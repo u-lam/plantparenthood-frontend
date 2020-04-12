@@ -12,9 +12,21 @@ const login = (user) => {
     .then(res => res);
 }
 
+const update = (user) => {
+  return axios.post(`${endpoint}/${user._id}`, user)
+    .then(res => res);
+}
+
+const deleteUser = (user) => {
+  return axios.delete(`${endpoint}/${user._id}`, user)
+    .then(res => res);
+}
+
 // no need to create an API call to logout because with JWT, the header will be removed and thus unauthenticate user
 
 export default {
   register,
-  login
+  login, 
+  update,
+  deleteUser
 }

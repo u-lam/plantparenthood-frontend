@@ -22,7 +22,7 @@ const update = (plant) => {
   return req;
 }
 
-const delete = (plant) => {
+const deletePlant = (plant) => {
   let req = axios.delete(`${endpoint}/${plant_id}`, plant)
   return req;
 }
@@ -32,5 +32,5 @@ export default {
   show,
   create,
   update,
-  delete
+  deletePlant
 }
