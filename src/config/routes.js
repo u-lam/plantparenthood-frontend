@@ -8,8 +8,15 @@ const Routes = () => {
   return (
     <Switch>
       <Route exact path='/' component={Home} />
+      
+      <Route path='/login' 
+        render={() => this.props.user 
+        ? <Redirect to='/user' />
+        : <Route component={Login} />}
+      />
+          
       <Route path='/register' component={Signup} />
-      <Route path='/login' component={Login} />
+      
       {/* <Route expact path='/user' component={User} />
       <Route expact path='/plants' component={Plants} />
       <Route expact path='/myplants' component={Home} /> */}

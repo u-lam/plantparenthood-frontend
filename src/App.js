@@ -6,6 +6,7 @@ import Header from './layout/Header/Header';
 import Footer from './layout/Footer/Footer';
 import Routes from './config/routes';
 import UserAPI from './api/UserAPI';
+import { Switch } from '@material-ui/core';
 
 
 class App extends React.Component {
@@ -83,7 +84,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header logout={this.logout} user={this.state.user}/>
-        <Routes register={this.register} login={this.login} user={this.state.user}/>
+        <Routes register={this.register} login={this.login} user={this.state.user} id={this.state.id}/>
         <Footer />
       </div>
     );
