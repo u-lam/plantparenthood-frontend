@@ -39,6 +39,7 @@ class Login extends React.Component {
   render() {
     return(
       <div className="login">
+        <form onSubmit={this.handleSubmit}>
         <TextField fullWidth
           label="Email"
           error={!this.state.email}
@@ -71,8 +72,8 @@ class Login extends React.Component {
         <br></br>
         <br></br>
         <br></br>
-        <Button variant="outlined" color="primary" type="submit">Submit</Button>
-
+        <Button variant="outlined" color="primary" >Submit</Button>
+        </form>
       </div>
     )
   }

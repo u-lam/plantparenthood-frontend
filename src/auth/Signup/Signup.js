@@ -81,7 +81,7 @@ class Signup extends React.Component {
       email: this.state.email,
       password: this.state.password
     }
-    this.props.register(user)
+    this.props.signup(user)
     // this.props.history.push('/login')
   }
 
