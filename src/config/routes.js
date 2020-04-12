@@ -20,6 +20,9 @@ const Routes = () => {
       {/* <Route expact path='/user' component={User} />
       <Route expact path='/plants' component={Plants} />
       <Route expact path='/myplants' component={Home} /> */}
+
+      {/* if this.props.user => User, Plants, MyPlants, Logout */}
+      {/* if !this.props.user => Login, Signup, Home */}
     </Switch>
   )
 }
