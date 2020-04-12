@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Nav.css';
+import './Header.css';
 import Button from '@material-ui/core/Button';
 
 
-class Nav extends React.Component {
+class Header extends React.Component {
 
   
 
@@ -42,4 +42,4 @@ class Nav extends React.Component {
   }
 }
 
-export default Nav;
+export default Header;

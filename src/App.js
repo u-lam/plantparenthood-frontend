@@ -1,10 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, 
-  Switch, Route, Redirect } from 'react-router-dom';
+// import { BrowserRouter as Router, 
+//   Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
-import Nav from './components/Nav/Nav';
-import Home from './components/Home/Home';
-import Footer from './components/Footer/Footer';
+import Header from './layout/Header/Header';
+import Footer from './layout/Footer/Footer';
+import Routes from './config/routes';
+
+
 
 class App extends React.Component {
 
@@ -59,13 +61,12 @@ class App extends React.Component {
 
   render() {
     return (
-      <Router>
-        <div className="App">
-          <Nav />
-          <Home />
-          <Footer />
-        </div>
-      </Router>
+      <div className="App">
+        {/* if !user, show header */}
+        <Header />
+        <Routes />
+        <Footer />
+      </div>
     );
   }
 }
