@@ -75,11 +75,15 @@ class Signup extends React.Component {
     // }
     // if all is good, login
     console.log('all good to log in')
-    // this.props.register(user)
+    let user = {
+      email: this.state.email,
+      password: this.state.password
+    }
+    this.props.register(user)
   }
 
   render() {
-    console.log('hi--------------------------')
+    console.log('hi--------------')
     console.log(this.state.email)
     console.log(this.state.isEmailValid)
     return (

@@ -12,6 +12,8 @@ const login = (user) => {
     .then(res => res);
 }
 
+// no need to create an API call to logout because with JWT, the header will be removed and thus unauthenticate user
+
 export default {
   register,
   login
