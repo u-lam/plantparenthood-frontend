@@ -1,12 +1,14 @@
 import React from 'react';
 // import { BrowserRouter as Router, 
 //   Switch, Route, Redirect } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
+import setAuthHeader from './utils/setAuthHeader';
 import './App.css';
 import Header from './layout/Header/Header';
 import Footer from './layout/Footer/Footer';
 import Routes from './config/routes';
 import UserAPI from './api/UserAPI';
-import { Switch } from '@material-ui/core';
+
 
 
 class App extends React.Component {
@@ -17,6 +19,7 @@ class App extends React.Component {
     id: ''
   }
 
+  // when we registered the user, we set the jwtToken to localStorage. This checks if it exists, and if so, set it to our state when the comp loads
   componentDidMount() {
     if (localStorage.jwtToken) {
       setAuthHeader(localStorage.jwtToken);
@@ -24,7 +27,8 @@ class App extends React.Component {
       const decoded = jwt_decode(localStorage.getItem('jwtToken'));
       this.setState({
         user: decoded.email,
-        id: decoded._id
+        id: decoded._id,
+        isLoggedIn: true,
       })
     }
   }
@@ -43,16 +47,15 @@ class App extends React.Component {
         const decoded = jwt_decode(token);
         this.setState({
           user: decoded.email,
-          id: decoded._id
+          id: decoded._id,
         })
       }
     })
     .catch (err => console.log(err));
   };
 
-
   login = (user) => {
-    UserApi.login(user)
+    UserAPI.login(user)
     .then(res => {
       if (res.status === 200) {
         const token = res.data.token;
@@ -62,7 +65,8 @@ class App extends React.Component {
         const decoded = jwt_decode(token);
         this.setState({
           user: decoded.username,
-          id: decoded._id
+          id: decoded._id,
+          isLoggedIn: true
         })
       }
     })
@@ -76,7 +80,8 @@ class App extends React.Component {
     // remove the user info from state so the re-render will log them out and change the HTML header automatically
     this.setState({
       user: '',
-      id: ''
+      id: '',
+      isLoggedIn: false
     })
   }
 
@@ -84,7 +89,15 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header logout={this.logout} user={this.state.user}/>
-        <Routes register={this.register} login={this.login} user={this.state.user} id={this.state.id}/>
+
+        <Routes 
+          register={this.register} 
+          login={this.login} 
+          user={this.state.user} 
+          id={this.state.id} 
+          isLoggedIn={this.state.isLoggedIn}
+        />
+        
         <Footer />
       </div>
     );

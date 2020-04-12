@@ -1,5 +1,8 @@
 import React from 'react';
 import './Signup.css';
+import UserAPI from '../../api/UserAPI';
+import jwt_decode from 'jwt-decode';
+import setAuthHeader from '../../utils/setAuthHeader';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
@@ -44,7 +47,6 @@ class Signup extends React.Component {
 // Can't get this feature to work
  validateEmail = (email) => {
     const emailRegex = /[^@]+@[^.]+..+/;
-  
     if (emailRegex.test(email)) {
       this.setState({
         isEmailValid: !this.state.isEmailValid
@@ -80,6 +82,7 @@ class Signup extends React.Component {
       password: this.state.password
     }
     this.props.register(user)
+    // this.props.history.push('/login')
   }
 
   render() {
@@ -124,6 +127,7 @@ class Signup extends React.Component {
             }
           />
         </FormControl>
+        <br></br>
         <br></br>
         <br></br>
         <Button 
