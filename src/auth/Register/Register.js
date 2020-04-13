@@ -38,7 +38,7 @@ class Register extends React.Component {
   };
 
 
-// Can't get these 2 features to work
+
  validateEmail = (email) => {
     const emailRegex = /[^@]+@[^.]+..+/;
     if (emailRegex.test(email)) {
@@ -49,13 +49,14 @@ class Register extends React.Component {
     return false;
   };
 
+  // Can't get this to work
   validatePwd = (password) => {
-    const pwdRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%\^&\*])(?=.{8,})/;
+    const pwdRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,}$/;
     if (pwdRegex.test(password)) {
       this.setState({
         isPwdValid: !this.state.isPwdValid
       });
-      }
+    }
     return false;
   };
 
@@ -63,36 +64,35 @@ class Register extends React.Component {
     this.setState({ 
       [input]: e.target.value 
     })
+  
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.validateEmail(this.state.email)
-    // this.validatePwd(this.state.password)
+    this.validateEmail(this.state.email);
+    this.validatePwd(this.state.password);
 
-  //  if email and password are not valid, console log to see what's been entered
-    // if (!this.state.isEmailValid && !this.state.isPwdvalid) {
-    //   return console.log(this.state.email, this.state.password)
-    // }
-    // if all is good, login
-    console.log('all good to log in')
+  //  if email or password is not valid, console log to see what's been entered
+    if (this.state.isEmailValid || this.state.isPwdvalid) {
+      return console.log('invalid email or password')
+    }
+    // if all is good, register user
     let user = {
       email: this.state.email,
       password: this.state.password,
       firstName: this.state.firstName,
       lastName: this.state.lastName
     }
+   
     this.props.register(user)
-    // this.props.history.push('/login')
-  }
-
+  } 
+    
 
   render() {
     const { classes } = this.props;
     console.log('hi----------')
-    console.log(this.state.email)
-    console.log(this.state.isEmailValid)
-
+    console.log(this.state.password)
+    console.log(this.state.isPwdvalid)
     return (
       <Container component="main" maxWidth="xs">
         <CssBaseline />
