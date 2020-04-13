@@ -4,6 +4,7 @@ import Home from '../components/Home/Home';
 import Signup from '../auth/Signup/Signup'; 
 import Login from '../auth/Login/Login';
 import User from '../components/User/User';
+import PlantContainer from '../components/PlantContainer/PlantContainer';
 
 const Routes = (props) => {
  
@@ -24,11 +25,11 @@ const Routes = (props) => {
         : <Login login={props.login}/>}
       />
       
-      <Route expact path='/logout' component={Home} />
-      <Route expact path='/user' component={User} />
+      <Route path='/logout' component={Home} />
+      <Route path='/user' component={User} />
      
-      {/* <Route expact path='/plants' component={PlantContainer} />
-      <Route expact path='/myplants' component={MyPlants} /> */}
+       <Route path='/plants' component={PlantContainer} />
+      {/*<Route expact path='/myplants' component={MyPlants} /> */}
 
       {/* if this.props.user => User, Plants, MyPlants,Logout */}
       {/* if !this.props.user => Login, Signup, Home */}

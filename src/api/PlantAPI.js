@@ -8,7 +8,7 @@ const index = () => {
 }
 
 const show = (plant) => {
-  let req = axios.get(`${endpoint}/${plant_id}`, plant)
+  let req = axios.get(`${endpoint}/${plant.id}`, plant)
   return req;
 }
 
@@ -18,12 +18,12 @@ const create = (plant) => {
 }
 
 const update = (plant) => {
-  let req = axios.put(`${endpoint}/${plant_id}`, plant)
+  let req = axios.put(`${endpoint}/${plant.id}`, plant)
   return req;
 }
 
 const deletePlant = (plant) => {
-  let req = axios.delete(`${endpoint}/${plant_id}`, plant)
+  let req = axios.delete(`${endpoint}/${plant.id}`, plant)
   return req;
 }
 
