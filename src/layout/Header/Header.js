@@ -13,29 +13,29 @@ const Header = (props) => {
             {/* <img src='../../plants.png' width='20' height='20' ></img> */}
             <Link className="nav-name" to={"/"}>Plant Parenthood</Link>
           </div>
-          <div className="navbar-right"> 
-            <Link className="nav-register" to={"/register"}>
-              <Button variant="outlined" color="secondary">Sign Up</Button>
-            </Link>
-          </div>
-          <div className="navbar-right"> 
-            <Link className="nav-login" to={"/login"}>
-              <Button variant="outlined" color="primary">Log In</Button>
-            </Link>
-          </div>
 
-        {/* if user is logged in */}
-          <div className="navbar-right"> 
-            <Link className="nav-logout" to={"/logout"} onClick={props.logout}>
-              <Button variant="outlined" color="secondary">Log Out</Button>
-            </Link>
-          </div>
-
+          { (props.user) 
+          ? <div className="navbar-right"> 
+              <Link className="nav-logout" to={"/logout"} onClick={props.logout}>
+                <Button variant="outlined" color="secondary">Log Out</Button>
+              </Link>
+            </div>
+          : <>
+            <div className="navbar-right"> 
+                <Link className="nav-register" to={"/register"}>
+                  <Button variant="outlined" color="secondary">Sign Up</Button>
+                </Link>
+              </div>
+              <div className="navbar-right"> 
+                <Link className="nav-login" to={"/login"}>
+                  <Button variant="outlined" color="primary">Log In</Button>
+                </Link>
+              </div>
+            </>
+          }
         </nav>
-        <hr></hr>
       </div>
     )
-  
 }
 
 export default Header;

@@ -16,7 +16,9 @@ class App extends React.Component {
   state = {
     isLoggedIn: false,
     user: '',
-    id: ''
+    id: '',
+    firstName: '',
+    lastName: ''
   }
 
   // when we registered the user, we set the jwtToken to localStorage. This checks if it exists, and if so, set it to our state when the comp loads
@@ -28,7 +30,9 @@ class App extends React.Component {
       this.setState({
         user: decoded.email,
         id: decoded._id,
-        isLoggedIn: true,
+        firstName: decoded.firstName,
+        lastName: decoded.lastName,
+        isLoggedIn: !this.state.isLoggedIn,
       })
     }
   }
@@ -36,8 +40,8 @@ class App extends React.Component {
 // Make the API call, if success, get the token from res and set that to local storage
 // Then set the auth header to token, decode it, and set state
 
-  register = () => {
-    UserAPI.register()
+  register = (user) => {
+    UserAPI.register(user)
     .then(res => {
       if (res.status === 200) {
         const token = res.data.token;
@@ -48,6 +52,8 @@ class App extends React.Component {
         this.setState({
           user: decoded.email,
           id: decoded._id,
+          firstName: decoded.firstName,
+          lastName: decoded.lastName,
         })
       }
     })
@@ -66,7 +72,9 @@ class App extends React.Component {
         this.setState({
           user: decoded.username,
           id: decoded._id,
-          isLoggedIn: true
+          firstName: decoded.firstName,
+          lastName: decoded.lastName,
+          isLoggedIn: !this.state.isLoggedIn,
         })
       }
     })
@@ -81,6 +89,8 @@ class App extends React.Component {
     this.setState({
       user: '',
       id: '',
+      firstName: '',
+      lastName: '',
       isLoggedIn: false
     })
   }

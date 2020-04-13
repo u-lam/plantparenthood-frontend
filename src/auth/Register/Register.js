@@ -76,11 +76,13 @@ class Register extends React.Component {
     // }
     // if all is good, login
     console.log('all good to log in')
-    // let user = {
-    //   email: this.state.email,
-    //   password: this.state.password
-    // }
-    this.props.register()
+    let user = {
+      email: this.state.email,
+      password: this.state.password,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName
+    }
+    this.props.register(user)
     // this.props.history.push('/login')
   }
 
