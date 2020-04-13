@@ -26,6 +26,7 @@ const Routes = (props) => {
       />
       
       <Route path='/logout' component={Home} />
+      
       <Route path='/user' component={User} />
      
        <Route path='/plants' component={PlantContainer} />

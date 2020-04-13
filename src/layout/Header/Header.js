@@ -4,9 +4,8 @@ import './Header.css';
 import Button from '@material-ui/core/Button';
 
 
-class Header extends React.Component {
+const Header = (props) => {
 
-  render() {
     return (
       <div className='header'>
         <nav className="navbar">
@@ -27,7 +26,7 @@ class Header extends React.Component {
 
         {/* if user is logged in */}
           <div className="navbar-right"> 
-            <Link className="nav-logout" to={"/logout"}>
+            <Link className="nav-logout" to={"/logout"} onClick={props.logout}>
               <Button variant="outlined" color="secondary">Log Out</Button>
             </Link>
           </div>
@@ -36,7 +35,7 @@ class Header extends React.Component {
         <hr></hr>
       </div>
     )
-  }
+  
 }
 
 export default Header;
