@@ -13,7 +13,7 @@ const styles = theme => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: "#00897b" 
+    backgroundColor: "#00e676" 
   },
   form: {
     width: '100%', 
@@ -21,40 +21,76 @@ const styles = theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    backgroundColor: "#00897b"
+    backgroundColor: "#00e676"
   },
 });
 
-
-class Login extends React.Component {
+class Register extends React.Component {
   
   state = {
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
-  }
+    showPassword: false,
+    isEmailValid: false,
+    isPwdvalid: false
+  };
+
+
+
+ validateEmail = (email) => {
+    const emailRegex = /[^@]+@[^.]+..+/;
+    if (emailRegex.test(email)) {
+      this.setState({
+        isEmailValid: !this.state.isEmailValid
+      });
+    }
+    return false;
+  };
+
+  // Can't get this to work
+  validatePwd = (password) => {
+    const pwdRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,}$/;
+    if (pwdRegex.test(password)) {
+      this.setState({
+        isPwdValid: !this.state.isPwdValid
+      });
+    }
+    return false;
+  };
 
   handleChange = input => (e) => {
     this.setState({ 
       [input]: e.target.value 
-    })  
+    })
   };
-
 
   handleSubmit = (e) => {
     e.preventDefault();
+    this.validateEmail(this.state.email);
+    // this.validatePwd(this.state.password);
+
+  //  if email or password is not valid, console log to see what's been entered
+    // if (this.state.isEmailValid || this.state.isPwdvalid) {
+    //   return console.log('invalid email or password')
+    // }
+    // if all is good, register user
     let user = {
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName
     }
-    this.props.login(user);
-  }
+    this.props.register(user)
+  } 
+    
 
   render() {
     const { classes } = this.props;
-    console.log('hello')
-    console.log(this.state)
-
-
+    // console.log('hi----------')
+    // console.log(this.state.password)
+    // console.log(this.state.isPwdvalid)
     return (
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -63,11 +99,29 @@ class Login extends React.Component {
             <LocalFloristOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Log In
+            Sign Up
           </Typography>
           <br></br>
           <form className={classes.form} onSubmit={this.handleSubmit}>
             <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  autoComplete="fname" variant="outlined"
+                  fullWidth  autoFocus
+                  id="firstName" label="First Name"
+                  name="firstName" value={this.state.firstName}
+                  onChange={this.handleChange('firstName')}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  autoComplete="lname" variant="outlined"
+                  fullWidth autoFocus
+                  id="lastName" label="Last Name"
+                  name="lastName" value={this.state.lastName}
+                  onChange={this.handleChange('lastName')}
+                />
+              </Grid>
               <Grid item xs={12}>
                 <TextField
                   autoComplete="email" variant="outlined"                 
@@ -91,9 +145,17 @@ class Login extends React.Component {
               type="submit" variant="contained"
               fullWidth color="primary"
               className={classes.submit}
+              // onSubmit={this.handleSubmit}
             >
-              Log In
+              Sign Up
             </Button>
+            <Grid container justify="flex-end">
+              <Grid item>
+                <Link to='/login' variant="body2">
+                  Already have an account? Log in
+                </Link>
+              </Grid>
+            </Grid>
           </form>
         </div>
       </Container>
@@ -101,4 +163,4 @@ class Login extends React.Component {
   }
 }
 
-export default withStyles(styles)(Login);
+export default withStyles(styles)(Register);

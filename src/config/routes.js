@@ -1,18 +1,49 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Home from '../components/Home/Home';
-import Signup from '../auth/Signup/Signup'; 
+import Register from '../auth/Register/Register'; 
 import Login from '../auth/Login/Login';
+import User from '../components/User/User';
+import PlantContainer from '../components/PlantContainer/PlantContainer';
 
-const Routes = () => {
+
+{/*  FROM App.js
+register={this.register} 
+login={this.login} 
+user={this.state.user} 
+id={this.state.id} 
+firstName={this.state.firstName}
+lastName={this.state.lastName}
+isLoggedIn={this.state.isLoggedIn}
+ */}
+
+const Routes = (props) => {
+ 
   return (
     <Switch>
       <Route exact path='/' component={Home} />
-      <Route path='/register' component={Signup} />
-      <Route path='/login' component={Login} />
-      {/* <Route expact path='/user' component={User} />
-      <Route expact path='/plants' component={Plants} />
-      <Route expact path='/myplants' component={Home} /> */}
+      {/* <Route exact path='/about' component={About} /> */}
+        
+      <Route path='/register'
+        render={() => props.user
+        ? <Redirect to='/login' />
+        : <Register register={props.register} /> }
+      />
+
+      <Route path='/login' 
+        render={() => props.user
+        ? <Redirect to='/user' />
+        : <Login login={props.login}/>}
+      />
+      
+      <Route path='/user' component={User} />
+      <Route path='/logout' component={Home} />
+
+       <Route path='/plants' component={PlantContainer} />
+      {/*<Route expact path='/myplants' component={MyPlants} /> */}
+
+      {/* if this.props.user => User, Plants, MyPlants,Logout */}
+      {/* if !this.props.user => Login, Signup, Home */}
     </Switch>
   )
 }
