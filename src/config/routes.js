@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Home from '../components/Home/Home';
-import Signup from '../auth/Signup/Signup'; 
+import Register from '../auth/Register/Register'; 
 import Login from '../auth/Login/Login';
 import User from '../components/User/User';
 import PlantContainer from '../components/PlantContainer/PlantContainer';
@@ -16,7 +16,7 @@ const Routes = (props) => {
       <Route path='/register'
         render={() => props.user
         ? <Redirect to='/login' />
-        : <Signup signup={props.signup} /> }
+        : <Register register={props.register} /> }
       />
 
       <Route path='/login' 

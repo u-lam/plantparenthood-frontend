@@ -36,7 +36,7 @@ class App extends React.Component {
 // Make the API call, if success, get the token from res and set that to local storage
 // Then set the auth header to token, decode it, and set state
 
-  signup = (user) => {
+  register = (user) => {
     UserAPI.register(user)
     .then(res => {
       if (res.status === 200) {

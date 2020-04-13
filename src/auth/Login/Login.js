@@ -72,7 +72,7 @@ class Login extends React.Component {
         <br></br>
         <br></br>
         <br></br>
-        <Button variant="outlined" color="primary" >Submit</Button>
+        <Button variant="outlined" color="primary" >Login</Button>
         </form>
       </div>
     )
