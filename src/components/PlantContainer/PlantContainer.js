@@ -1,7 +1,8 @@
 import React from 'react';
 import PlantAPI from '../../api/PlantAPI';
-import './PlantContainer.css';
+
 import Plant from '../Plant/Plant';
+import { Grid, Container }  from '@material-ui/core';
 
 
 class PlantContainer extends React.Component {
@@ -59,21 +60,26 @@ class PlantContainer extends React.Component {
 
   render() {
     let plants = this.state.plants;
-    console.log('hey')
-    console.log(plants)
-
+    // console.log('hey')
+    // console.log(plants)
     return (
-      <div className='postContainer'>
-        <h3 className=''>Plants</h3>
-        {plants && plants.map(plant => {
-          return <Plant plant={plant} key={plant._id}
-                        handleUpdate={this.handleUpdate}
-                        handleDelete={this.handleDelete}
-                  /> 
-        }) }
+      <div>
+        <h3>Plants</h3>
+      <Container
+          style={{ backgroundColor: '#cfe8fc', height: '75vh', width: '80vw',
+                  display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center',  }}>
+          {plants && plants.map(plant => {
+            return <Plant plant={plant} key={plant._id}
+                    handleUpdate={this.handleUpdate}
+                    handleDelete={this.handleDelete}
+                    />        
+          }) }
+      </Container>
       </div>
     )
   }
 }
 
 export default PlantContainer;
+
+// 
