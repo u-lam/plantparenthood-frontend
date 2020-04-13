@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 import Button from '@material-ui/core/Button';
+import PlantContainer from '../../components/PlantContainer/PlantContainer';
 
 
 const Header = (props) => {
@@ -15,11 +16,23 @@ const Header = (props) => {
           </div>
 
           { (props.user) 
-          ? <div className="navbar-right"> 
-              <Link className="nav-logout" to={"/logout"} onClick={props.logout}>
-                <Button variant="outlined" color="secondary">Log Out</Button>
-              </Link>
-            </div>
+          ? <>
+              <div className="navbar-right"> 
+                <Link className="nav-logout" to={"/plants"}>
+                  <Button variant="outlined" color="secondary">Plants</Button>
+                </Link>
+              </div>
+              <div className="navbar-right"> 
+                <Link className="nav-logout" to={"/user"}>
+                  <Button variant="outlined" color="secondary">Profile</Button>
+                </Link>
+              </div>
+              <div className="navbar-right"> 
+                <Link className="nav-logout" to={"/logout"} onClick={props.logout}>
+                  <Button variant="outlined" color="secondary">Log Out</Button>
+                </Link>
+              </div>
+            </>
           : <>
             <div className="navbar-right"> 
                 <Link className="nav-register" to={"/register"}>
