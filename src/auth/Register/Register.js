@@ -80,7 +80,7 @@ class Register extends React.Component {
       email: this.state.email,
       password: this.state.password
     }
-    this.props.signup(user)
+    this.props.register(user)
     // this.props.history.push('/login')
   }
 
@@ -102,7 +102,7 @@ class Register extends React.Component {
             Sign Up
           </Typography>
           <br></br>
-          <form className={classes.form}>
+          <form className={classes.form} onSubmit={this.handleSubmit}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -135,18 +135,17 @@ class Register extends React.Component {
                 <TextField
                   autoComplete="current-password" variant="outlined"                 
                   fullWidth autoFocus required
-                  id="outlined-password-input" label="Password"
+                  id="password" label="Password" type="password"
                   name="password" value={this.state.password}
                   onChange={this.handleChange('password')}             
                 />
               </Grid>
-          
             </Grid>
             <Button
               type="submit" variant="contained"
               fullWidth color="primary"
               className={classes.submit}
-              onSubmit={this.handleSubmit}
+              // onSubmit={this.handleSubmit}
             >
               Sign Up
             </Button>
@@ -164,7 +163,4 @@ class Register extends React.Component {
   }
 }
 
-// HigherOrderComponent.propTypes = {
-//   classes: PropTypes.object.isRequired,
-// };
 export default withStyles(styles)(Register);
