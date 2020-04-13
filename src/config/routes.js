@@ -6,6 +6,17 @@ import Login from '../auth/Login/Login';
 import User from '../components/User/User';
 import PlantContainer from '../components/PlantContainer/PlantContainer';
 
+
+{/*  FROM App.js
+register={this.register} 
+login={this.login} 
+user={this.state.user} 
+id={this.state.id} 
+firstName={this.state.firstName}
+lastName={this.state.lastName}
+isLoggedIn={this.state.isLoggedIn}
+ */}
+
 const Routes = (props) => {
  
   return (
@@ -25,10 +36,9 @@ const Routes = (props) => {
         : <Login login={props.login}/>}
       />
       
-      <Route path='/logout' component={Home} />
-      
       <Route path='/user' component={User} />
-     
+      <Route path='/logout' component={Home} />
+
        <Route path='/plants' component={PlantContainer} />
       {/*<Route expact path='/myplants' component={MyPlants} /> */}
 

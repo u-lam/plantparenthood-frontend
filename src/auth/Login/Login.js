@@ -1,20 +1,33 @@
 import React from 'react';
-import './Login.css';
-import UserAPI from '../../api/UserAPI';
-import jwt_decode from 'jwt-decode';
-import setAuthHeader from '../../utils/setAuthHeader';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import FormControl from '@material-ui/core/FormControl';
-import IconButton from '@material-ui/core/IconButton';
-import InputLabel from '@material-ui/core/InputLabel';
-import Input from '@material-ui/core/Input';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import { Avatar, Button, CssBaseline, TextField, Link, 
+        Grid, Typography, Container } from '@material-ui/core';
+import LocalFloristOutlinedIcon from '@material-ui/icons/LocalFloristOutlined';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = theme => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: "#00897b" 
+  },
+  form: {
+    width: '100%', 
+    marginTop: theme.spacing(3),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+    backgroundColor: "#00897b"
+  },
+});
 
 
 class Login extends React.Component {
+  
   state = {
     email: '',
     password: '',
@@ -23,7 +36,7 @@ class Login extends React.Component {
   handleChange = input => (e) => {
     this.setState({ 
       [input]: e.target.value 
-    })
+    })  
   };
 
 
@@ -37,46 +50,55 @@ class Login extends React.Component {
   }
 
   render() {
-    return(
-      <div className="login">
-        <form onSubmit={this.handleSubmit}>
-        <TextField fullWidth
-          label="Email"
-          error={!this.state.email}
-          // helperText={!this.state.email ? 'Please provide a valid email' : null} 
-          required={true}
-          onChange={this.handleChange('email')} /> 
-        <br></br>
+    const { classes } = this.props;
+    console.log('hello')
+    console.log(this.state)
 
-        <FormControl fullWidth >
-          <InputLabel>Password</InputLabel>
-          <Input
-            type={this.state.showPassword ? 'text' : 'password'}
-            value={this.state.password}
-            required={true}
-            error={!this.state.password}
-            // helperText={!this.state.password ? 'Please provide a valid password' : null} 
-            onChange={this.handleChange('password')}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  onClick={this.showPwd}
-                  onMouseDown={this.mouseDownPwd}
-                >
-                  {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-            }
-          />
-        </FormControl>
-        <br></br>
-        <br></br>
-        <br></br>
-        <Button variant="outlined" color="primary" >Login</Button>
-        </form>
-      </div>
+
+    return (
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LocalFloristOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Log In
+          </Typography>
+          <br></br>
+          <form className={classes.form} onSubmit={this.handleSubmit}>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  autoComplete="email" variant="outlined"                 
+                  fullWidth autoFocus required                  
+                  id="email" label="Email Address"                  
+                  name="email" value={this.state.email}
+                  onChange={this.handleChange('email')}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  autoComplete="current-password" variant="outlined"                 
+                  fullWidth autoFocus required
+                  id="password" label="Password" type="password"
+                  name="password" value={this.state.password}
+                  onChange={this.handleChange('password')}             
+                />
+              </Grid>
+            </Grid>
+            <Button
+              type="submit" variant="contained"
+              fullWidth color="primary"
+              className={classes.submit}
+            >
+              Log In
+            </Button>
+          </form>
+        </div>
+      </Container>
     )
   }
 }
 
-export default Login;
+export default withStyles(styles)(Login);

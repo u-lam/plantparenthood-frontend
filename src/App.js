@@ -96,6 +96,7 @@ class App extends React.Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <div className="App">
         <Header logout={this.logout} user={this.state.user}/>
@@ -105,6 +106,8 @@ class App extends React.Component {
           login={this.login} 
           user={this.state.user} 
           id={this.state.id} 
+          firstName={this.state.firstName}
+          lastName={this.state.lastName}
           isLoggedIn={this.state.isLoggedIn}
         />
         

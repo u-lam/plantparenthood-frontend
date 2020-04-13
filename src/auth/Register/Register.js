@@ -64,18 +64,17 @@ class Register extends React.Component {
     this.setState({ 
       [input]: e.target.value 
     })
-  
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
     this.validateEmail(this.state.email);
-    this.validatePwd(this.state.password);
+    // this.validatePwd(this.state.password);
 
   //  if email or password is not valid, console log to see what's been entered
-    if (this.state.isEmailValid || this.state.isPwdvalid) {
-      return console.log('invalid email or password')
-    }
+    // if (this.state.isEmailValid || this.state.isPwdvalid) {
+    //   return console.log('invalid email or password')
+    // }
     // if all is good, register user
     let user = {
       email: this.state.email,
@@ -83,16 +82,15 @@ class Register extends React.Component {
       firstName: this.state.firstName,
       lastName: this.state.lastName
     }
-   
     this.props.register(user)
   } 
     
 
   render() {
     const { classes } = this.props;
-    console.log('hi----------')
-    console.log(this.state.password)
-    console.log(this.state.isPwdvalid)
+    // console.log('hi----------')
+    // console.log(this.state.password)
+    // console.log(this.state.isPwdvalid)
     return (
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -161,7 +159,7 @@ class Register extends React.Component {
           </form>
         </div>
       </Container>
-    );
+    )
   }
 }
 
