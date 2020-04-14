@@ -12,6 +12,11 @@ const login = (user) => {
     .then(res => res);
 }
 
+const show = (user) => {
+  return axios.post(`${endpoint}/${user._id}`, user)
+  .then(res => res);
+}
+
 const update = (user) => {
   return axios.post(`${endpoint}/${user._id}`, user)
     .then(res => res);
@@ -27,6 +32,7 @@ const deleteUser = (user) => {
 export default {
   register,
   login, 
+  show,
   update,
   deleteUser
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import './Plant.css';
+import '../Plant/Plant.css';
 import Button from '@material-ui/core/Button';
 
 
@@ -16,19 +16,16 @@ import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
 
-class Plant extends React.Component {
+class PlantAdopt extends React.Component {
 
   state = {
-    isEditing: false,
     name: this.props.plant.name,
     sunlight: this.props.plant.sunlight,
     water: this.props.plant.water,
     owner: this.props.plant.user
   }
 
-  render() {
-    // console.log('plant.js: ', this.props.plant.user)
-    
+  render() {  
     return (
       <Card className='plantcard' >
         <CardContent>
@@ -62,4 +59,4 @@ class Plant extends React.Component {
   }
 }
 
-export default Plant;
+export default PlantAdopt;
