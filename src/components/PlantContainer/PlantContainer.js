@@ -2,14 +2,13 @@ import React from 'react';
 import PlantAPI from '../../api/PlantAPI';
 
 import Plant from '../Plant/Plant';
-import { Grid, Container }  from '@material-ui/core';
+import { Container }  from '@material-ui/core';
 
 
 class PlantContainer extends React.Component {
 
   state = {
-    plants: [],
-    // owner: this.props.user // ???
+    plants: []
   }
 
   // Need to recheck
@@ -64,15 +63,18 @@ class PlantContainer extends React.Component {
     // console.log(plants)
     return (
       <div>
-        <h3>Plants</h3>
+        <h3>Plant Container</h3>
       <Container
-          style={{ backgroundColor: '#cfe8fc', height: '75vh', width: '80vw',
+          style={{ backgroundColor: '#cfe8fc', height: '100vh', width: '80vw',
                   display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center',  }}>
           {plants && plants.map(plant => {
-            return <Plant plant={plant} key={plant._id}
+            return <>
+                    <Plant plant={plant} key={plant._id}
                     handleUpdate={this.handleUpdate}
                     handleDelete={this.handleDelete}
-                    />        
+                    />
+                   
+                  </>  
           }) }
       </Container>
       </div>

@@ -19,7 +19,12 @@ const Header = (props) => {
           ? <>
               <div className="navbar-right"> 
                 <Link className="nav-logout" to={"/plants"}>
-                  <Button variant="outlined" color="secondary">Plants</Button>
+                  <Button variant="outlined" color="primary">Plants</Button>
+                </Link>
+              </div>
+              <div className="navbar-right"> 
+                <Link className="nav-logout" to={"/myplants"}>
+                  <Button variant="outlined" color="secondary">MyPlants</Button>
                 </Link>
               </div>
               <div className="navbar-right"> 

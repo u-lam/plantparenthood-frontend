@@ -69,7 +69,7 @@ class App extends React.Component {
 
         const decoded = jwt_decode(token);
         this.setState({
-          user: decoded.username,
+          user: decoded.email,
           id: decoded._id,
           firstName: decoded.firstName,
           lastName: decoded.lastName,
