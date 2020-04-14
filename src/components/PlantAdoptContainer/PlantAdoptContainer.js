@@ -19,8 +19,6 @@ class PlantAdoptContainer extends React.Component {
   componentDidMount() {
     PlantAPI.index()
     .then(res => {
-      console.log('comp did mount')
-      console.log(res.data)
       this.setState({ 
         plants: res.data,
         currentUser: this.props.user
@@ -30,7 +28,7 @@ class PlantAdoptContainer extends React.Component {
 
   render() {
     let plants = this.state.plants;
-    console.log('plant container logged in user: ' , this.props.user)
+    console.log('plantadopt container logged in user: ' , this.props.user)
     console.log(plants)
    
     return (
@@ -41,15 +39,14 @@ class PlantAdoptContainer extends React.Component {
             display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'spacearound', flexGrow: 1 }}>
             {plants && plants.map(plant => {
               return <>
-                  
-                    {this.props.firstName === null
-                    ? <PlantAdopt plant={plant} key={plant._id}
-                      handleUpdate={this.handleUpdate}
-                      handleDelete={this.handleDelete}
-                      /> 
-                    : null
-                    }
-                  </>
+                      {!plant.user
+                      ? <PlantAdopt plant={plant} key={plant._id}
+                        handleUpdate={this.handleUpdate}
+                        handleDelete={this.handleDelete}
+                        /> 
+                      : null
+                      }
+                    </>
           }) }
         </Container>
       </div>
@@ -58,4 +55,3 @@ class PlantAdoptContainer extends React.Component {
 }
 
 export default PlantAdoptContainer;
-

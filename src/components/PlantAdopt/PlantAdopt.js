@@ -19,7 +19,6 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 class PlantAdopt extends React.Component {
 
   state = {
-    isEditing: false,
     name: this.props.plant.name,
     sunlight: this.props.plant.sunlight,
     water: this.props.plant.water,

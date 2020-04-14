@@ -39,6 +39,7 @@ const Routes = (props) => {
       
       <Route path='/user' component={User} />
       <Route path='/logout' component={Home} />
+     
 
       <PlantContainer path='/myplants' user={props.user} firstName={props.firstName}/>
       <PlantAdoptContainer path='/plants' user={props.user} firstName={props.firstName} />
