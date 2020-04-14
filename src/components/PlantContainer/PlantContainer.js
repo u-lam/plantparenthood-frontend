@@ -1,8 +1,8 @@
 import React from 'react';
 import PlantAPI from '../../api/PlantAPI';
-
+import './PlantContainer.css';
 import Plant from '../Plant/Plant';
-import { Container }  from '@material-ui/core';
+import { Container, Switch }  from '@material-ui/core';
 
 
 class PlantContainer extends React.Component {
@@ -64,17 +64,22 @@ class PlantContainer extends React.Component {
     return (
       <div>
         <h3>Plant Container</h3>
-      <Container
-          style={{ backgroundColor: '#cfe8fc', height: '100vh', width: '80vw',
-                  display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center',  }}>
+      <Container className='plantcontainer'
+          style={{ backgroundColor: '#cfe8fc', height: '100%', width: '80vw',
+          display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'spacearound', flexGrow: 1 }}>
           {plants && plants.map(plant => {
             return <>
+                  {/* <Switch> */}
+                    <>
+                    <p>Hi</p>
                     <Plant plant={plant} key={plant._id}
                     handleUpdate={this.handleUpdate}
                     handleDelete={this.handleDelete}
                     />
                    
                   </>  
+                  {/* </Switch> */}
+                  </>
           }) }
       </Container>
       </div>
