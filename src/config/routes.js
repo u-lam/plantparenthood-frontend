@@ -5,6 +5,7 @@ import Register from '../auth/Register/Register';
 import Login from '../auth/Login/Login';
 import User from '../components/User/User';
 import PlantContainer from '../components/PlantContainer/PlantContainer';
+import PlantAdoptContainer from '../components/PlantAdoptContainer/PlantAdoptContainer';
 
 
 {/*  FROM App.js
@@ -39,8 +40,8 @@ const Routes = (props) => {
       <Route path='/user' component={User} />
       <Route path='/logout' component={Home} />
 
-       <PlantContainer path='/plants' user={props.user} firstName={props.firstName}/>
-      {/*<Route expact path='/myplants' component={MyPlants} /> */}
+      <PlantContainer path='/myplants' user={props.user} firstName={props.firstName}/>
+      <PlantAdoptContainer path='/plants' user={props.user} firstName={props.firstName} />
 
       {/* if this.props.user => User, Plants, MyPlants,Logout */}
       {/* if !this.props.user => Login, Signup, Home */}

@@ -68,35 +68,25 @@ class PlantContainer extends React.Component {
    
     return (
       <div>
-      <h3>Plant Container</h3>
-      <Container className='plantcontainer'
-          style={{ backgroundColor: '#cfe8fc', height: '100%', width: '80vw',
-          display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'spacearound', flexGrow: 1 }}>
-          {plants && plants.map(plant => {
-            return <>
-                  
-                    {/* if plants no owner (donation) */}
-
-                    {/* if my plants */}
-                    {this.props.firstName !== plant.user
+        <h3>My Plant Container</h3>
+        <Container className='plantcontainer'
+            style={{ backgroundColor: '#cfe8fc', height: '100%', width: '80vw',
+            display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'spacearound', flexGrow: 1 }}>
+            {plants && plants.map(plant => {
+              return <>                 
+                    {this.props.firstName === plant.user
                     ? <Plant plant={plant} key={plant._id}
                       handleUpdate={this.handleUpdate}
                       handleDelete={this.handleDelete}
                       /> 
                     : null
                     }
-                   
-                   
-              
-                  
                   </>
           }) }
-      </Container>
+        </Container>
       </div>
     )
   }
 }
 
 export default PlantContainer;
-
-// 
