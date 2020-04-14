@@ -11,7 +11,6 @@ const Header = (props) => {
       <div className='header'>
         <nav className="navbar">
           <div className="nav-left"> 
-            {/* <img src='../../plants.png' width='20' height='20' ></img> */}
             <Link className="nav-name" to={"/"}>Plant Parenthood</Link>
           </div>
 
