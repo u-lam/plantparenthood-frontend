@@ -38,15 +38,17 @@ class PlantAdoptContainer extends React.Component {
             style={{ backgroundColor: '#cfe8fc', height: '100%', width: '80vw',
             display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'spacearound', flexGrow: 1 }}>
             {plants && plants.map(plant => {
-              return <>
-                      {!plant.user
-                      ? <PlantAdopt plant={plant} key={plant._id}
-                        handleUpdate={this.handleUpdate}
-                        handleDelete={this.handleDelete}
-                        /> 
-                      : null
-                      }
-                    </>
+              return (
+                <div key={plant._id}>
+                  {!plant.user
+                  ? <PlantAdopt plant={plant} key={plant._id}
+                    handleUpdate={this.handleUpdate}
+                    handleDelete={this.handleDelete}
+                    /> 
+                  : null
+                  }
+                </div>
+              )
           }) }
         </Container>
       </div>

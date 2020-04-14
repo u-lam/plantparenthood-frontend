@@ -13,7 +13,7 @@ class PlantContainer extends React.Component {
   }
 
   // Need to recheck
-  // handleCreate = () => {
+  // handleAPICreate = () => {
   //   PlantAPI.create({
   //     name: this.state.plants.name,
   //     sunlight: this.state.plants.sunlight,
@@ -30,7 +30,7 @@ class PlantContainer extends React.Component {
 
  
 
-  handleUpdate = (plant) => {
+  handleAPIUpdate = (plant) => {
     PlantAPI.update(plant)
     .then(res => {
       console.log(res)
@@ -41,7 +41,7 @@ class PlantContainer extends React.Component {
     }) 
   }
 
-  // handleDelete = (id) => {
+  // handleAPIDelete = (id) => {
   //   PlantAPI.delete(id)
   //   .then(res => {
   //     let plants = this.state.plants.filter(plant => {
@@ -79,8 +79,8 @@ class PlantContainer extends React.Component {
                 <div key={plant._id}>                 
                   {this.props.firstName === plant.user 
                   ? <Plant plant={plant} 
-                    handleUpdate={this.handleUpdate}
-                    handleDelete={this.handleDelete}
+                    handleAPIUpdate={this.handleAPIUpdate}
+                    handleAPIDelete={this.handleAPIDelete}
                     /> 
                   : null
                   }

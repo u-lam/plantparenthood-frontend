@@ -1,6 +1,6 @@
 import React from 'react';
 import './Plant.css';
-import { Button, Card, CardContent, CardActions, IconButton, 
+import { Button, Card, CardContent, CardActions, IconButton, FormControl,
         Typography, TextField, Grid } from '@material-ui/core';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
@@ -9,6 +9,7 @@ class Plant extends React.Component {
 
   state = {
     isEditing: false,
+    id: this.props.plant._id,
     name: this.props.plant.name,
     sunlight: this.props.plant.sunlight,
     water: this.props.plant.water,
@@ -25,6 +26,7 @@ class Plant extends React.Component {
 // toggles the state to editing so the form will show, or back to not editing
   handleEdit = () => {
     console.log('editing')
+    console.log(this.props.plant)
     this.setState({
       isEditing: !this.state.isEditing
     })
@@ -34,6 +36,15 @@ class Plant extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     console.log('handling submit')
+    console.log(this.props.plant)
+    let updatedPlant = {
+      id: this.state.id,
+      name: this.state.name,
+      sunlight: this.state.sunlight,
+      water: this.state.water
+    }
+    this.props.handleAPIUpdate(updatedPlant);
+    this.setState({ isEditing: !this.state.isEditing })
   }
 
   // invokes the delete api call in container and updates the db
@@ -42,7 +53,7 @@ class Plant extends React.Component {
     console.log('deleting')
   }
 
-  
+
   render() {
     // console.log('plant.js: ', this.props.plant.user)
     
@@ -58,7 +69,7 @@ class Plant extends React.Component {
                   <Grid item xs={12}>
                     <TextField
                       autoComplete="name" variant="outlined"                 
-                      autoFocus                  
+                      autoFocus type="text"             
                       id="name" label="name"                  
                       name="name" value={this.state.name}
                       onChange={this.handleChange('name')}
@@ -67,7 +78,7 @@ class Plant extends React.Component {
                   <Grid item xs={12}>
                     <TextField
                       autoComplete="sunlight" variant="outlined"                 
-                      autoFocus 
+                      autoFocus type='text'
                       id="sunlight" label="sunlight" 
                       name="sunlight" value={this.state.sunlight}
                       onChange={this.handleChange('sunlight')}           
@@ -76,10 +87,10 @@ class Plant extends React.Component {
                   <Grid item xs={12}>
                     <TextField
                       autoComplete="water" variant="outlined"                 
-                      autoFocus 
+                      autoFocus type='text'
                       id="water" label="water" 
                       name="water" value={this.state.water}
-                      onChange={this.handleChange('sunlight')}           
+                      onChange={this.handleChange('water')}           
                     />
                   </Grid>
                 </Grid>

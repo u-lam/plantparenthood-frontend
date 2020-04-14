@@ -7,10 +7,10 @@ const index = () => {
   return req;
 }
 
-const indexUser = () => {
-  let req = axios.get("http://localhost:4005/api/v1/myplants")
-  return req;
-}
+// const indexUser = () => {
+//   let req = axios.get("http://localhost:4005/api/v1/myplants")
+//   return req;
+// }
 
 const show = (plant) => {
   let req = axios.get(`${endpoint}/${plant.id}`, plant)
@@ -34,7 +34,7 @@ const deletePlant = (plant) => {
 
 export default {
   index,
-  indexUser,
+  // indexUser,
   show,
   create,
   update,
