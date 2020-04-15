@@ -41,15 +41,15 @@ class PlantContainer extends React.Component {
     }) 
   }
 
-  // handleAPIDelete = (id) => {
-  //   PlantAPI.delete(id)
-  //   .then(res => {
-  //     let plants = this.state.plants.filter(plant => {
-  //       return plant._id !== id
-  //     })
-  //     this.setState({ plants })
-  //   })
-  // }
+  handleAPIDelete = (id) => {
+    PlantAPI.deletePlant(id)
+    .then(res => {
+      let plants = this.state.plants.filter(plant => {
+        return plant._id !== id
+      })
+      this.setState({ plants })
+    })
+  }
 
   componentDidMount() {
     PlantAPI.index()

@@ -1,7 +1,9 @@
 import React from 'react';
 import './Plant.css';
-import { Button, Card, CardContent, CardActions, IconButton, FormControl,
+import { Button, Card, CardContent, CardActions, IconButton,
         Typography, TextField, Grid } from '@material-ui/core';
+import { Dialog, DialogTitle, DialogContent, DialogContentText, 
+        DialogActions } from '@material-ui/core';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 
@@ -9,6 +11,7 @@ class Plant extends React.Component {
 
   state = {
     isEditing: false,
+    open: false,
     id: this.props.plant._id,
     name: this.props.plant.name,
     sunlight: this.props.plant.sunlight,
@@ -16,27 +19,24 @@ class Plant extends React.Component {
     owner: this.props.plant.user
   }
 
-  // set the target state input to the target value
+  // **  EDIT PLANT  **
   handleChange = input => (e) => {
     this.setState({ 
       [input]: e.target.value 
     })  
   }
  
-// toggles the state to editing so the form will show, or back to not editing
   handleEdit = () => {
-    console.log('editing')
-    console.log(this.props.plant)
     this.setState({
-      isEditing: !this.state.isEditing
+      isEditing: !this.state.isEditing,
+      name: this.props.plant.name,
+      sunlight: this.props.plant.sunlight,
+      water: this.props.plant.water,
     })
   }
 
-  // invokes the api call in container and sends the update info to container to db
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log('handling submit')
-    console.log(this.props.plant)
     let updatedPlant = {
       id: this.state.id,
       name: this.state.name,
@@ -47,21 +47,47 @@ class Plant extends React.Component {
     this.setState({ isEditing: !this.state.isEditing })
   }
 
-  // invokes the delete api call in container and updates the db
+  // **  DELETE PLANT  **
+  handleOpen = () => {
+    this.setState({ open: true })
+  }
+
+  handleClose = () => {
+    this.setState({ open: false })
+  }
+
   handleDelete = (e) => {
     e.preventDefault();
-    console.log('deleting')
+    let deletedPlantId = this.state.id
+    this.props.handleAPIDelete(deletedPlantId);
+    this.setState({ open: false })
   }
 
 
   render() {
-    // console.log('plant.js: ', this.props.plant.user)
     
     return (
       <div>
-        {/* WHEN EDITING */}
+        {/*****  DELETE DIALOG  *****/}
+        <Dialog open={this.state.open} onClose={this.handleClose}>
+          <DialogTitle id="form-dialog-title">Delete</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Are you sure you want to delete <strong>{this.state.name}</strong>?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleClose} color="primary">
+              Cancel
+            </Button>
+            <Button onClick={this.handleDelete} color="primary">
+              Yes, I'm sure.
+            </Button>
+          </DialogActions>
+        </Dialog>
+
+        {/*****  WHEN EDITING  *****/}
         {this.state.isEditing && 
-        <>
           <Card className='plantcard' >
             <CardContent>
               <form onSubmit={this.handleSubmit}>
@@ -100,47 +126,42 @@ class Plant extends React.Component {
               </form>
             </CardContent>
           </Card>
-        </>
-      }
+        }
 
-      {/* WHEN NOT EDITING */}
-      {!this.state.isEditing && 
-      <> 
-        <Card className='plantcard' >
-          <CardContent>
-            <Typography variant="body2" color="textSecondary">
-              <img src='../plants.png' alt='plants' height='150' width='150'/> <br></br>
-              <p>Name: {this.state.name}</p>
-              <p>Sunlight: {this.state.sunlight}</p>
-              <p>Water: {this.state.water}</p>
+        {/*****  WHEN NOT EDITING  *****/}
+        {!this.state.isEditing && 
+          <Card className='plantcard' >
+            <CardContent>
+              <Typography variant="body2" color="textSecondary">
+                <img src='../plants.png' alt='plants' height='150' width='150'/> <br></br>
+                <p>Name: {this.state.name}</p>
+                <p>Sunlight: {this.state.sunlight}</p>
+                <p>Water: {this.state.water}</p>
 
-              {this.props.plant.user 
-              ? <> Owner: {this.state.owner} </>
-              : null
+                {this.props.plant.user 
+                ? <> Owner: {this.state.owner} </>
+                : null
+                }
+              </Typography>
+            </CardContent>
+
+            <CardActions disableSpacing>
+              {this.props.plant.user
+              ? <>
+                <IconButton aria-label="edit">
+                  <EditOutlinedIcon onClick={this.handleEdit}/>
+                </IconButton>
+                <IconButton aria-label="delete">
+                  <DeleteOutlineOutlinedIcon onClick={this.handleOpen}/>
+                </IconButton>
+                  <Button size='small'>Donate</Button>
+                  <Button size='small'>Trade</Button> 
+                </>  
+              : <Button size='small'>Adopt Me!</Button>
               }
-            </Typography>
-          </CardContent>
-
-          <CardActions disableSpacing>
-            {this.props.plant.user
-            ? <>
-              <IconButton aria-label="edit">
-                <EditOutlinedIcon onClick={this.handleEdit}/>
-              </IconButton>
-              <IconButton aria-label="delete">
-                <DeleteOutlineOutlinedIcon onClick={this.handleDelete}/>
-              </IconButton>
-              
-                <Button size='small'>Donate</Button>
-                <Button size='small'>Trade</Button> 
-              </>  
-            : <Button size='small'>Adopt Me!</Button>
-            }
-          </CardActions>
-        </Card> 
-      </>
-      }
-
+            </CardActions>
+          </Card> 
+        }
       </div>       
     )
   }

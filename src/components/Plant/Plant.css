@@ -3,3 +3,10 @@
   margin: 10px;
   flex: 1 0 250px;
 }
+
+.planteditform {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 250px;
+}
