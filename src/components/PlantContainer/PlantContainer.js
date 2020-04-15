@@ -2,7 +2,8 @@ import React from 'react';
 import PlantAPI from '../../api/PlantAPI';
 import './PlantContainer.css';
 import Plant from '../Plant/Plant';
-import { Container }  from '@material-ui/core';
+import PlantNew from '../PlantNew/PlantNew';
+import { Button, Container }  from '@material-ui/core';
 
 
 class PlantContainer extends React.Component {
@@ -12,28 +13,25 @@ class PlantContainer extends React.Component {
     currentUser: ''
   }
 
-  // Need to recheck
-  // handleAPICreate = () => {
-  //   PlantAPI.create({
-  //     name: this.state.plants.name,
-  //     sunlight: this.state.plants.sunlight,
-  //     water:this.state.plants.sunlight
-  //   })
-  //   .then(res => {
-  //     console.log(res)
-  //     let plants = this.state.plants;
-  //     let newPlant = res;
-  //     plants.push(newPlant)
-  //   })
-  //   this.setState({ plants: this.state.plants })
-  // }
 
- 
+  handleAPICreate = () => {
+    let newPlant = {
+      name: this.state.plants.name,
+      sunlight: this.state.plants.sunlight,
+      water:this.state.plants.water
+    }
+    PlantAPI.create(newPlant)
+    .then(res => {
+      console.log(res)
+      let plants = this.state.plants;
+      plants.push(res.data)
+    })
+    this.setState({ plants: this.state.plants })
+  }
 
   handleAPIUpdate = (plant) => {
     PlantAPI.update(plant)
     .then(res => {
-      console.log(res)
       let plants = this.state.plants
       let plantToUpdate = plants.findIndex(plant => plant._id === res._id)
       plants[plantToUpdate] = res;
@@ -54,8 +52,6 @@ class PlantContainer extends React.Component {
   componentDidMount() {
     PlantAPI.index()
     .then(res => {
-      // console.log('comp did mount')
-      // console.log(res.data)
       this.setState({ 
         plants: res.data,
         currentUser: this.props.user
@@ -65,12 +61,13 @@ class PlantContainer extends React.Component {
 
   render() {
     let plants = this.state.plants;
-    // console.log('plant container logged in user: ' , this.props.user)
-    // console.log(plants)
-   
     return (
       <div>
+        <Container>
         <h3>My Plant Container</h3>
+        <PlantNew handleCreate={this.handleAPICreate} />
+        </Container>
+        <br></br>
         <Container className='plantcontainer'
             style={{ backgroundColor: '#cfe8fc', height: '100%', width: '80vw',
             display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'spacearound'}}>

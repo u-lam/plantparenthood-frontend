@@ -1,0 +1,71 @@
+import React from 'react';
+
+
+
+
+class PlantNew extends React.Component {
+
+  state = {
+    name: '',
+    sunlight: '',
+    water: ''
+  }
+
+  handleChange = (e) => {
+    this.setState({ 
+      [e.target.name]: e.target.value
+    })
+  }
+  
+  handleSubmit = (e) => {
+    e.preventDefault();
+    let newPlant = {
+      name: this.state.name,
+      sunlight: this.state.sunlight,
+      water: this.state.water
+    }
+    this.props.handleCreate(newPlant);
+    this.setState({ 
+      name: '',
+      sunlight: '',
+      water: ''
+    })
+  }
+
+  render() {
+    console.log(this.state)
+    return (
+      <div> 
+        <form onSubmit={this.handleSubmit} id=''>
+      <input
+        type="text"
+        name="name"
+        placeholder='Name'
+        value=''
+        onChange={this.handleChange}
+      ></input>
+      <input
+        type="text"
+        name="sunlight"
+        placeholder='Sunlight'
+        value=''
+        onChange={this.handleChange}
+      ></input>
+   
+      <input
+         type="text"
+        name="water"
+        placeholder='Water'
+        value=''
+        onChange={this.handleChange}
+      ></input>
+
+      <button>Add this plant to your collection!</button>
+      <button>Cancel</button>
+      </form>
+      </div>
+    )
+  }
+}
+
+export default PlantNew;

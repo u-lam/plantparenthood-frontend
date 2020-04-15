@@ -47,6 +47,7 @@ class Plant extends React.Component {
     this.setState({ isEditing: !this.state.isEditing })
   }
 
+  
   // **  DELETE PLANT  **
   handleOpen = () => {
     this.setState({ open: true })
