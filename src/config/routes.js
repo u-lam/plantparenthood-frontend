@@ -41,7 +41,7 @@ const Routes = (props) => {
       <Route path='/logout' component={Home} />
      
 
-      <PlantContainer path='/myplants' user={props.user} firstName={props.firstName}/>
+      <PlantContainer path='/myplants' user={props.user} firstName={props.firstName} id={props.id}/>
       <PlantAdoptContainer path='/plants' user={props.user} firstName={props.firstName} />
 
       {/* if this.props.user => User, Plants, MyPlants,Logout */}

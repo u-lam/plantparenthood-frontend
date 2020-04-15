@@ -8,7 +8,8 @@ class PlantNew extends React.Component {
   state = {
     name: '',
     sunlight: '',
-    water: ''
+    water: '',
+    user: ''
   }
 
   handleChange = (e) => {
@@ -22,9 +23,11 @@ class PlantNew extends React.Component {
     let newPlant = {
       name: this.state.name,
       sunlight: this.state.sunlight,
-      water: this.state.water
+      water: this.state.water,
+      // user: this.props.firstName
     }
-    this.props.handleCreate(newPlant);
+    console.log('this is the new plant: ', newPlant)
+    this.props.handleAPICreate(newPlant);
     this.setState({ 
       name: '',
       sunlight: '',
@@ -41,14 +44,14 @@ class PlantNew extends React.Component {
         type="text"
         name="name"
         placeholder='Name'
-        value=''
+        value={this.state.name}
         onChange={this.handleChange}
       ></input>
       <input
         type="text"
         name="sunlight"
         placeholder='Sunlight'
-        value=''
+        value={this.state.sunlight}
         onChange={this.handleChange}
       ></input>
    
@@ -56,7 +59,7 @@ class PlantNew extends React.Component {
          type="text"
         name="water"
         placeholder='Water'
-        value=''
+        value={this.state.water}
         onChange={this.handleChange}
       ></input>
 

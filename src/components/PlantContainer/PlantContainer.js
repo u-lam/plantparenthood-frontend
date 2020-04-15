@@ -14,18 +14,17 @@ class PlantContainer extends React.Component {
   }
 
 
-  handleAPICreate = () => {
-    let newPlant = {
-      name: this.state.plants.name,
-      sunlight: this.state.plants.sunlight,
-      water:this.state.plants.water
-    }
-    PlantAPI.create(newPlant)
+  handleAPICreate = (plant) => {
+    console.log('this is handleAPI create')
+    PlantAPI.create(plant)
     .then(res => {
-      console.log(res)
+      console.log('this is the res:')
       let plants = this.state.plants;
-      plants.push(res.data)
+      console.log(plants)
+      plants.push(res)
     })
+    .catch((err) => console.log(err))
+    console.log('list of my plants', this.state.plants)
     this.setState({ plants: this.state.plants })
   }
 
@@ -54,7 +53,7 @@ class PlantContainer extends React.Component {
     .then(res => {
       this.setState({ 
         plants: res.data,
-        currentUser: this.props.user
+        // currentUser: this.props.user
       })
     })
   }
@@ -65,7 +64,7 @@ class PlantContainer extends React.Component {
       <div>
         <Container>
         <h3>My Plant Container</h3>
-        <PlantNew handleCreate={this.handleAPICreate} />
+        <PlantNew handleAPICreate={this.handleAPICreate} user={this.props.user} firstName={this.props.firstName}/>
         </Container>
         <br></br>
         <Container className='plantcontainer'
