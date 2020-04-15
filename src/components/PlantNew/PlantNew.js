@@ -24,7 +24,7 @@ class PlantNew extends React.Component {
       name: this.state.name,
       sunlight: this.state.sunlight,
       water: this.state.water,
-      // user: this.props.firstName
+      user: this.props.firstName
     }
     console.log('this is the new plant: ', newPlant)
     this.props.handleAPICreate(newPlant);
@@ -36,7 +36,7 @@ class PlantNew extends React.Component {
   }
 
   render() {
-    console.log(this.state)
+    console.log('state: ', this.state)
     return (
       <div> 
         <form onSubmit={this.handleSubmit} id=''>

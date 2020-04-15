@@ -18,14 +18,16 @@ class PlantContainer extends React.Component {
     console.log('this is handleAPI create')
     PlantAPI.create(plant)
     .then(res => {
-      console.log('this is the res:')
-      let plants = this.state.plants;
-      console.log(plants)
-      plants.push(res)
+      console.log('this is the res:', res)
+      let newPlants = this.state.plants;
+      console.log(newPlants)
+      newPlants.push(res.data)
+      console.log('line 25: ', newPlants)
+      this.setState({ plants: newPlants })
     })
     .catch((err) => console.log(err))
-    console.log('list of my plants', this.state.plants)
-    this.setState({ plants: this.state.plants })
+    console.log('list of plants in db:', this.state.plants)
+    
   }
 
   handleAPIUpdate = (plant) => {
@@ -39,6 +41,7 @@ class PlantContainer extends React.Component {
   }
 
   handleAPIDelete = (id) => {
+    console.log('delete plants: ', this.state.plants)
     PlantAPI.deletePlant(id)
     .then(res => {
       let plants = this.state.plants.filter(plant => {
@@ -60,6 +63,7 @@ class PlantContainer extends React.Component {
 
   render() {
     let plants = this.state.plants;
+    console.log(plants)
     return (
       <div>
         <Container>

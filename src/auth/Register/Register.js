@@ -42,9 +42,7 @@ class Register extends React.Component {
  validateEmail = (email) => {
     const emailRegex = /[^@]+@[^.]+..+/;
     if (emailRegex.test(email)) {
-      this.setState({
-        isEmailValid: !this.state.isEmailValid
-      });
+      return true
     }
     return false;
   };
@@ -53,9 +51,7 @@ class Register extends React.Component {
   validatePwd = (password) => {
     const pwdRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,}$/;
     if (pwdRegex.test(password)) {
-      this.setState({
-        isPwdValid: !this.state.isPwdValid
-      });
+      return true
     }
     return false;
   };
@@ -68,29 +64,22 @@ class Register extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.validateEmail(this.state.email);
-    // this.validatePwd(this.state.password);
-
-  //  if email or password is not valid, console log to see what's been entered
-    // if (this.state.isEmailValid || this.state.isPwdvalid) {
-    //   return console.log('invalid email or password')
-    // }
-    // if all is good, register user
-    let user = {
-      email: this.state.email,
-      password: this.state.password,
-      firstName: this.state.firstName,
-      lastName: this.state.lastName
+    if (this.validateEmail(this.state.email) && this.validatePwd(this.state.password)) {
+      let user = {
+        email: this.state.email,
+        password: this.state.password,
+        firstName: this.state.firstName,
+        lastName: this.state.lastName
+      }
+      this.props.register(user)
+    } else {
+      console.log('invalid email/password')
     }
-    this.props.register(user)
   } 
-    
 
   render() {
     const { classes } = this.props;
-    // console.log('hi----------')
-    // console.log(this.state.password)
-    // console.log(this.state.isPwdvalid)
+
     return (
       <Container component="main" maxWidth="xs">
         <CssBaseline />
