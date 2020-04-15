@@ -1,8 +1,6 @@
 import React from 'react';
 
 
-
-
 class PlantNew extends React.Component {
 
   state = {
@@ -26,7 +24,6 @@ class PlantNew extends React.Component {
       water: this.state.water,
       user: this.props.firstName
     }
-    console.log('this is the new plant: ', newPlant)
     this.props.handleAPICreate(newPlant);
     this.setState({ 
       name: '',
@@ -36,7 +33,6 @@ class PlantNew extends React.Component {
   }
 
   render() {
-    console.log('state: ', this.state)
     return (
       <div> 
         <form onSubmit={this.handleSubmit} id=''>

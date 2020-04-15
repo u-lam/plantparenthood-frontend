@@ -59,14 +59,14 @@ class Plant extends React.Component {
 
   handleDelete = (e) => {
     e.preventDefault();
-    let deletedPlantId = this.state.id
-    this.props.handleAPIDelete(deletedPlantId);
+    this.props.handleAPIDelete(this.state.id);
+    console.log('deleteAPI call line 63: ', this.state.id)
     this.setState({ open: false })
   }
 
 
   render() {
-    
+    // console.log(this.state.id)
     return (
       <div>
         {/*****  DELETE DIALOG  *****/}
