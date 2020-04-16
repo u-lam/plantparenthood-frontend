@@ -71,7 +71,7 @@ class PlantNew extends React.Component {
               </Grid>
             </Grid>
             <br></br>
-            <Button size='small' type='submit' value='submit' onClick={this.props.hideModal} >Add this plant!</Button>
+            <Button size='small' type='submit' value='submit' onClick={this.props.hideModal}>Add this plant!</Button>
             <Button size='small' onClick={this.props.hideModal}>Cancel</Button> 
           </form>
         </CardContent>

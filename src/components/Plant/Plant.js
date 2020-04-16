@@ -16,10 +16,10 @@ class Plant extends React.Component {
     name: this.props.plant.name,
     sunlight: this.props.plant.sunlight,
     water: this.props.plant.water,
-    owner: this.props.plant.user
+    owner: this.props.firstName
   }
 
-  // **  EDIT PLANT  **
+  // **  EDIT PLANT: handleChange, handleEdit, handleSubmit **
   handleChange = input => (e) => {
     this.setState({ 
       [input]: e.target.value 
@@ -48,7 +48,7 @@ class Plant extends React.Component {
   }
 
   
-  // **  DELETE PLANT  **
+  // **  DELETE PLANT: handleOpen, handleClose, handleDelete **
   handleOpen = () => {
     this.setState({ open: true })
   }
@@ -66,7 +66,7 @@ class Plant extends React.Component {
 
 
   render() {
-    // console.log(this.state.id)
+
     return (
       <div>
         {/*****  DELETE DIALOG  *****/}
@@ -134,7 +134,7 @@ class Plant extends React.Component {
           <Card className='plantcard' >
             <CardContent>
               <Typography variant="body2" color="textSecondary">
-                <img src='../plants.png' alt='plants' height='150' width='150'/> <br></br>
+                <img src='../plants.png' alt='plants' height='150' width='150'/><br></br>
                 <p>Name: {this.state.name}</p>
                 <p>Sunlight: {this.state.sunlight}</p>
                 <p>Water: {this.state.water}</p>

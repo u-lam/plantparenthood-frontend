@@ -59,6 +59,20 @@ class App extends React.Component {
     .catch (err => console.log(err));
   };
 
+ 
+  update = (user) => {
+    UserAPI.update(user)
+    .then(res => {
+      this.setState({
+        user: res.data.email,
+        firstName: res.data.firstName,
+        lastName: res.data.lastName
+      })
+    })
+    .catch (err => console.log(err));
+  }
+
+
   login = (user) => {
     UserAPI.login(user)
     .then(res => {
@@ -95,7 +109,6 @@ class App extends React.Component {
   }
 
   render() {
-    // console.log(this.state)
     return (
       <div className="App">
         <Header logout={this.logout} user={this.state.user}/>
@@ -103,7 +116,8 @@ class App extends React.Component {
         <Routes 
           register={this.register} 
           login={this.login} 
-          user={this.state.user} 
+          update={this.update}
+          user={this.state.user}  //only email
           id={this.state.id} 
           firstName={this.state.firstName}
           lastName={this.state.lastName}

@@ -11,6 +11,7 @@ import PlantAdoptContainer from '../components/PlantAdoptContainer/PlantAdoptCon
 {/*  FROM App.js
 register={this.register} 
 login={this.login} 
+update={this.update}
 user={this.state.user} 
 id={this.state.id} 
 firstName={this.state.firstName}
@@ -37,12 +38,14 @@ const Routes = (props) => {
         : <Login login={props.login}/>}
       />
       
-      <Route path='/user' component={User} />
+      <User path='/user' update={props.update} user={props.user}     id={props.id} firstName={props.firstName} 
+        lastName={props.lastName} />
+
       <Route path='/logout' component={Home} />
      
 
       <PlantContainer path='/myplants' user={props.user} firstName={props.firstName} id={props.id}/>
-      <PlantAdoptContainer path='/plants' user={props.user} firstName={props.firstName} />
+      <PlantAdoptContainer path='/plants' user={props.user} firstName={props.firstName} id={props.id}/>
 
       {/* if this.props.user => User, Plants, MyPlants,Logout */}
       {/* if !this.props.user => Login, Signup, Home */}

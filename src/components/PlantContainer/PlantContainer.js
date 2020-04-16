@@ -3,11 +3,10 @@ import PlantAPI from '../../api/PlantAPI';
 // import './PlantContainer.css';
 import Plant from '../Plant/Plant';
 import PlantNew from '../PlantNew/PlantNew';
-import { Container, IconButton, Modal }  from '@material-ui/core';
+import { Container, IconButton, Modal, Backdrop, Fade }  from '@material-ui/core';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { withStyles } from '@material-ui/core/styles';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
+
 
 const styles = theme => ({
   modal: {
@@ -31,8 +30,8 @@ class PlantContainer extends React.Component {
     showModal: false,
   }
 
+  // Hide/Show modal for CREATING new plant
   showModal = () => {
-    console.log('opening modal')
     this.setState({ showModal: true })
   }
 
@@ -40,6 +39,7 @@ class PlantContainer extends React.Component {
     this.setState({ showModal: false })
   }
 
+  // API calls to perform full CRUD
   handleAPICreate = (plant) => {
     PlantAPI.create(plant)
     .then(res => {
@@ -80,6 +80,7 @@ class PlantContainer extends React.Component {
   render() {
     let plants = this.state.plants;
     const { classes } = this.props;
+    
 
     return (
       <div>
@@ -111,8 +112,8 @@ class PlantContainer extends React.Component {
             {plants && plants.map(plant => {
               return (
                 <div key={plant._id}>                 
-                  {this.props.firstName === plant.user 
-                  ? <Plant plant={plant} 
+                  {this.props.id === plant.user
+                  ? <Plant plant={plant} firstName={this.props.firstName} userId={this.props.id}
                     handleAPIUpdate={this.handleAPIUpdate}
                     handleAPIDelete={this.handleAPIDelete}
                     /> 
