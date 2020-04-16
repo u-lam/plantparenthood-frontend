@@ -1,12 +1,10 @@
 import React from 'react';
 import PlantAPI from '../../api/PlantAPI';
-import './PlantContainer.css';
+// import './PlantContainer.css';
 import Plant from '../Plant/Plant';
 import PlantNew from '../PlantNew/PlantNew';
-import { Container, Icon, IconButton, Modal }  from '@material-ui/core';
+import { Container, IconButton, Modal }  from '@material-ui/core';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-
-
 import { withStyles } from '@material-ui/core/styles';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
@@ -88,19 +86,16 @@ class PlantContainer extends React.Component {
         {/* MODAL TO ADD NEW PLANT, DATA PASSED TO PLANTNEW COMPONENT */}
         <Container>
           <h3>My Plant Container</h3>
-          <IconButton style={{ color: "#00897b", size: 'medium' }}>
+          <IconButton style={{ color: "#00897b" }}>
             <AddCircleOutlineIcon onClick={this.showModal}/>
           </IconButton>
 
           <Modal
             aria-labelledby="transition-modal-title"
             aria-describedby="transition-modal-description"
-            className={classes.modal}
-            open={this.state.showModal}
-            onClose={this.hideModal}
-            closeAfterTransition
-            BackdropComponent={Backdrop}
-            BackdropProps={{ timeout: 500  }}
+            className={classes.modal} open={this.state.showModal}
+            onClose={this.hideModal} closeAfterTransition
+            BackdropComponent={Backdrop} BackdropProps={{ timeout: 500  }}
             >
             <Fade in={this.state.showModal}>
               <PlantNew handleAPICreate={this.handleAPICreate} hideModal={this.hideModal}/>
