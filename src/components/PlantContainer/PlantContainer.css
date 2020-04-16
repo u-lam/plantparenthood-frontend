@@ -9,4 +9,8 @@
   flex-grow: 1; */
 }
 
+.MuiSvgIcon-root {
+  width: 2em;
+  height: 2em;
+}
 
