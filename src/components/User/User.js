@@ -2,7 +2,10 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Avatar, Button, Card, CardContent, CardActions, IconButton,
   Typography, TextField, Grid } from '@material-ui/core';
+import { Dialog, DialogTitle, DialogContent, 
+  DialogContentText, DialogActions } from '@material-ui/core';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import UserAPI from '../../api/UserAPI';
 
 
@@ -28,9 +31,11 @@ class User extends React.Component {
     firstName: this.props.firstName,
     lastName: this.props.lastName,
     email: this.props.user,
-    isEditing: false
+    isEditing: false,
+    open: false
   }
 
+  // EDIT USER PROFILE
   handleChange = input => (e) => {
     this.setState({ 
       [input]: e.target.value 
@@ -59,10 +64,27 @@ class User extends React.Component {
     this.setState({ isEditing: !this.state.isEditing })
   }
 
+  // DELETE USER PROFILE
+  handleOpen = () => {
+    this.setState({ open: true })
+  }
+
+  handleClose = () => {
+    this.setState({ open: false })
+  }
+
+  handleDelete = (e) => {
+    e.preventDefault();
+    this.props.delete(this.props.id);
+    this.setState({ 
+      open: false,
+    })
+  }
+
+
   componentDidMount() {
     UserAPI.show(this.props.id)
     .then(res => {
-      // console.log('this is res data:' , res.data)
       this.setState({
         firstName: res.data.firstName,
         lastName: res.data.lastName,
@@ -72,17 +94,15 @@ class User extends React.Component {
   }
 
   render() {
-  
     // console.log('this is props id:', this.props.id)
-    console.log('this is props:', this.props)
-    console.log('this is state:', this.state)
-    console.log(this.state.isEditing)
+    // console.log('this is props:', this.props)
+    // console.log('this is state:', this.state)
+    // console.log(this.state.isEditing)
     const { classes } = this.props
 
     return (
       <div className={classes.root}>
         <div></div>
-        {/* <h3>This is the User profile</h3> */}
         <br></br>
         {/* WHEN NOT EDITING */}
         {!this.state.isEditing && 
@@ -91,7 +111,9 @@ class User extends React.Component {
                   <IconButton aria-label="edit">
                     <EditOutlinedIcon onClick={this.handleEdit}/>Edit {this.props.firstName}
                   </IconButton>
-                  
+                  <IconButton>
+                    <HighlightOffIcon onClick={this.handleOpen} />Delete {this.props.firstname}
+                  </IconButton>
                 </CardActions>
             <CardContent>
               <Typography variant="body2" color="textSecondary">
@@ -149,6 +171,23 @@ class User extends React.Component {
       </Card>
       }
 
+        {/*****  DELETE DIALOG  *****/}
+        <Dialog open={this.state.open} onClose={this.handleClose}>
+          <DialogTitle id="form-dialog-title">Delete</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Are you sure you want to delete <strong>{this.state.name}</strong>?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleClose} color="primary">
+              Cancel
+            </Button>
+            <Button onClick={this.handleDelete} color="primary">
+              Yes, I'm sure. 
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
     )
   }

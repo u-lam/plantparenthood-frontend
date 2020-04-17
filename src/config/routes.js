@@ -12,7 +12,8 @@ import PlantAdoptContainer from '../components/PlantAdoptContainer/PlantAdoptCon
 register={this.register} 
 login={this.login} 
 update={this.update}
-user={this.state.user} 
+delete={this.delete}
+user={this.state.user}  // email
 id={this.state.id} 
 firstName={this.state.firstName}
 lastName={this.state.lastName}
@@ -34,21 +35,16 @@ const Routes = (props) => {
 
       <Route path='/login' 
         render={() => props.user
-        ? <Redirect to='/user' />
+        ? <Redirect to='/myplants' />
         : <Login login={props.login}/>}
       />
-      
-      <User path='/user' update={props.update} user={props.user}     id={props.id} firstName={props.firstName} 
-        lastName={props.lastName} />
 
       <Route path='/logout' component={Home} />
-     
-
+      <User path='/user' update={props.update} delete={props.delete}
+            user={props.user} id={props.id} firstName={props.firstName} lastName={props.lastName} />
       <PlantContainer path='/myplants' user={props.user} firstName={props.firstName} id={props.id}/>
       <PlantAdoptContainer path='/plants' user={props.user} firstName={props.firstName} id={props.id}/>
 
-      {/* if this.props.user => User, Plants, MyPlants,Logout */}
-      {/* if !this.props.user => Login, Signup, Home */}
     </Switch>
   )
 }

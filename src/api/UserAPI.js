@@ -27,8 +27,8 @@ const update = (user) => {
     .catch(err => console.log(err))
 }
 
-const deleteUser = (user) => {
-  return axios.delete(`${endpoint}/${user._id}`, user)
+const deleteUser = (id) => {
+  return axios.delete(`${endpoint}/users/${id}`)
     .then(res => res)
     .catch(err => console.log(err))
 }
