@@ -29,7 +29,7 @@ const update = (user) => {
 
 const deleteUser = (id) => {
   return axios.delete(`${endpoint}/users/${id}`)
-    .then(res => res)
+    .then(res => res.history.pushState('/'))
     .catch(err => console.log(err))
 }
 

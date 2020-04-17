@@ -27,7 +27,7 @@ const Routes = (props) => {
       <Route exact path='/' component={Home} />
       {/* <Route exact path='/about' component={About} /> */}
         
-      <Route path='/register'
+      <Route path='/register' 
         render={() => props.user
         ? <Redirect to='/login' />
         : <Register register={props.register} /> }
@@ -35,13 +35,19 @@ const Routes = (props) => {
 
       <Route path='/login' 
         render={() => props.user
-        ? <Redirect to='/myplants' />
+        ? <Redirect to='/user' />
         : <Login login={props.login}/>}
       />
 
       <Route path='/logout' component={Home} />
-      <User path='/user' update={props.update} delete={props.delete}
+      <Route path='/user' 
+        render={() => props.user
+      ?  <User update={props.update} delete={props.delete}
             user={props.user} id={props.id} firstName={props.firstName} lastName={props.lastName} />
+      : <Redirect to='/' />
+      }
+      />
+
       <PlantContainer path='/myplants' user={props.user} firstName={props.firstName} id={props.id}/>
       <PlantAdoptContainer path='/plants' user={props.user} firstName={props.firstName} id={props.id}/>
 

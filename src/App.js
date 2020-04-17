@@ -33,7 +33,8 @@ class App extends React.Component {
           user: decoded.email,
           id: decoded._id,
           firstName: decoded.firstName,
-          lastName: decoded.lastName
+          lastName: decoded.lastName,
+          isLoggedIn: false
         })
       }
     })

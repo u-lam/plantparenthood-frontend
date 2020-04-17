@@ -13,7 +13,7 @@ const styles = theme => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: "#00e676" 
+    backgroundColor: "#00897b" 
   },
   form: {
     width: '100%', 
@@ -21,7 +21,7 @@ const styles = theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    backgroundColor: "#00e676"
+    backgroundColor: "#00897b"
   },
 });
 
@@ -72,7 +72,9 @@ class Register extends React.Component {
         lastName: this.state.lastName
       }
       this.props.register(user)
+
     } else {
+      // use helperText here to display error msg 
       console.log('invalid email/password')
     }
   } 
