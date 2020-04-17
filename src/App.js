@@ -1,11 +1,11 @@
 import React from 'react';
-// import { BrowserRouter as Router, 
-//   Switch, Route, Redirect } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import setAuthHeader from './utils/setAuthHeader';
 import './App.css';
 import Header from './layout/Header/Header';
 import Footer from './layout/Footer/Footer';
+import Home from './components/Home/Home';
 import Routes from './config/routes';
 import UserAPI from './api/UserAPI';
 
@@ -19,25 +19,6 @@ class App extends React.Component {
     firstName: '',
     lastName: ''
   }
-
-  // when we registered the user, we set the jwtToken to localStorage. This checks if it exists, and if so, set it to our state when the comp loads
-  componentDidMount() {
-    if (localStorage.jwtToken) {
-      setAuthHeader(localStorage.jwtToken);
-      // decode the token and set the state to token props
-      const decoded = jwt_decode(localStorage.getItem('jwtToken'));
-      this.setState({
-        user: decoded.email,
-        id: decoded._id,
-        firstName: decoded.firstName,
-        lastName: decoded.lastName,
-        isLoggedIn: !this.state.isLoggedIn,
-      })
-    }
-  }
-
-// Make the API call, if success, get the token from res and set that to local storage
-// Then set the auth header to token, decode it, and set state
 
   register = (user) => {
     UserAPI.register(user)
@@ -53,11 +34,24 @@ class App extends React.Component {
           id: decoded._id,
           firstName: decoded.firstName,
           lastName: decoded.lastName,
+          isLoggedIn: false
         })
       }
     })
     .catch (err => console.log(err));
   };
+
+  update = (user) => {
+    UserAPI.update(user)
+    .then(res => {
+      this.setState({
+        user: res.data.email,
+        firstName: res.data.firstName,
+        lastName: res.data.lastName
+      })
+    })
+    .catch (err => console.log('update error', err));
+  }
 
   login = (user) => {
     UserAPI.login(user)
@@ -77,7 +71,7 @@ class App extends React.Component {
         })
       }
     })
-    .catch(err => console.log(err));
+    .catch(err => console.log('login error', err));
   }
 
   logout = () => {
@@ -94,8 +88,36 @@ class App extends React.Component {
     })
   }
 
+  delete = (user) => {
+    UserAPI.deleteUser(user)
+    .then(res => {
+      this.setState({
+        isLoggedIn: false,
+        user: '',
+        id: '',
+        firstName: '',
+        lastName: ''
+      })
+    })
+    .catch(err => console.log('delete error', err))
+  }
+
+  componentDidMount() {
+    if (localStorage.jwtToken) {
+      setAuthHeader(localStorage.jwtToken);
+      const decoded = jwt_decode(localStorage.getItem('jwtToken'));
+      this.setState({
+        user: decoded.email,
+        id: decoded._id,
+        firstName: decoded.firstName,
+        lastName: decoded.lastName,
+        isLoggedIn: !this.state.isLoggedIn,
+      })
+    }
+  }
+
+
   render() {
-    // console.log(this.state)
     return (
       <div className="App">
         <Header logout={this.logout} user={this.state.user}/>
@@ -103,7 +125,9 @@ class App extends React.Component {
         <Routes 
           register={this.register} 
           login={this.login} 
-          user={this.state.user} 
+          update={this.update}
+          delete={this.delete}
+          user={this.state.user}  //only email
           id={this.state.id} 
           firstName={this.state.firstName}
           lastName={this.state.lastName}

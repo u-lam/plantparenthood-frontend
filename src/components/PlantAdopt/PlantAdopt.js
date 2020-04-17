@@ -1,18 +1,6 @@
 import React from 'react';
 import '../Plant/Plant.css';
-import Button from '@material-ui/core/Button';
-
-
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-
+import { Button, Card, CardContent, CardActions, IconButton, Typography} from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
 

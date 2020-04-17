@@ -1,87 +1,126 @@
 import React from 'react';
 import PlantAPI from '../../api/PlantAPI';
-import './PlantContainer.css';
+// import './PlantContainer.css';
 import Plant from '../Plant/Plant';
-import { Container }  from '@material-ui/core';
+import PlantNew from '../PlantNew/PlantNew';
+import { Container, IconButton, Modal, Backdrop, Fade }  from '@material-ui/core';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import { withStyles } from '@material-ui/core/styles';
+
+
+const styles = theme => ({
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+});
 
 
 class PlantContainer extends React.Component {
 
   state = {
     plants: [],
-    currentUser: '',
+    showModal: false,
   }
 
-  // Need to recheck
-  // handleCreate = () => {
-  //   PlantAPI.create({
-  //     name: this.state.plants.name,
-  //     sunlight: this.state.plants.sunlight,
-  //     water:this.state.plants.sunlight
-  //   })
-  //   .then(res => {
-  //     console.log(res)
-  //     let plants = this.state.plants;
-  //     let newPlant = res;
-  //     plants.push(newPlant)
-  //   })
-  //   this.setState({ plants: this.state.plants })
-  // }
+  // Hide/Show modal for CREATING new plant
+  showModal = () => {
+    this.setState({ showModal: true })
+  }
 
-  // handleUpdate = (plant) => {
-  //   PlantAPI.update(plant)
-  //   .then(res => {
-  //     console.log(res)
-  //     let plants = this.state.plants
-  //     let plantToUpdate = plants.findIndex(plant => plant._id === res._id)
-  //     plants[plantToUpdate] = res;
-  //     this.setState({ plants })
-  //   }) 
-  // }
+  hideModal = () => {
+    this.setState({ showModal: false })
+  }
 
-  // handleDelete = (id) => {
-  //   PlantAPI.delete(id)
-  //   .then(res => {
-  //     let plants = this.state.plants.filter(plant => {
-  //       return plant._id !== id
-  //     })
-  //     this.setState({ plants })
-  //   })
-  // }
+  // API calls to perform full CRUD
+  handleAPICreate = (plant) => {
+    PlantAPI.create(plant)
+    .then(res => {
+      let newPlants = this.state.plants;
+      newPlants.push(res.data)
+      this.setState({ plants: newPlants })
+    })
+    .catch((err) => console.log(err))    
+  }
+
+  handleAPIUpdate = (plant) => {
+    PlantAPI.update(plant)
+    .then(res => {
+      let plants = this.state.plants
+      let plantToUpdate = plants.findIndex(plant => plant._id === res._id)
+      plants[plantToUpdate] = res;
+      this.setState({ plants })
+    }) 
+  }
+
+  handleAPIDelete = (id) => {
+    PlantAPI.deletePlant(id)
+    .then(res => {
+      let plants = this.state.plants.filter(plant => {
+        return plant._id !== id
+      })
+      this.setState({ plants })
+    })
+  }
 
   componentDidMount() {
     PlantAPI.index()
     .then(res => {
-      console.log('comp did mount')
-      console.log(res.data)
-      this.setState({ 
-        plants: res.data,
-        currentUser: this.props.user
-      })
+      this.setState({ plants: res.data })
     })
   }
 
   render() {
     let plants = this.state.plants;
-    console.log('plant container logged in user: ' , this.props.user)
-    console.log(plants)
-   
+    const { classes } = this.props;
+    
+
     return (
       <div>
-        <h3>My Plant Container</h3>
+        {/* MODAL TO ADD NEW PLANT, DATA PASSED TO PLANTNEW COMPONENT */}
+        <Container>
+          <h3>My Plant Container</h3>
+          <IconButton style={{ color: "#00897b" }}>
+            <AddCircleOutlineIcon onClick={this.showModal}/>
+          </IconButton>
+
+          <Modal
+            aria-labelledby="transition-modal-title"
+            aria-describedby="transition-modal-description"
+            className={classes.modal} open={this.state.showModal}
+            onClose={this.hideModal} closeAfterTransition
+            BackdropComponent={Backdrop} BackdropProps={{ timeout: 500  }}
+            >
+            <Fade in={this.state.showModal}>
+              <PlantNew handleAPICreate={this.handleAPICreate} hideModal={this.hideModal}/>
+            </Fade>
+          </Modal>
+        </Container>
+        <br></br>
+
+        {/* PASSING DATA TO PLANT COMPONENT */}
         <Container className='plantcontainer'
             style={{ backgroundColor: '#cfe8fc', height: '100%', width: '80vw',
-            display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'spacearound', flexGrow: 1 }}>
+            display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}>
             {plants && plants.map(plant => {
-              return <>                 
-                    {this.props.firstName === plant.user
-                    ? <Plant plant={plant} key={plant._id}
-                      handleUpdate={this.handleUpdate}
-                      handleDelete={this.handleDelete}
-                      /> 
-                    : null
-                    }
-                  </>
+              return (
+                <div key={plant._id}>                 
+                  {this.props.id === plant.user
+                  ? <Plant plant={plant} firstName={this.props.firstName} userId={this.props.id}
+                    handleAPIUpdate={this.handleAPIUpdate}
+                    handleAPIDelete={this.handleAPIDelete}
+                    /> 
+                  : null
+                  }
+                 </div>
+              )
           }) }
         </Container>
       </div>
@@ -89,4 +128,4 @@ class PlantContainer extends React.Component {
   }
 }
 
-export default PlantContainer;
+export default withStyles(styles)(PlantContainer);

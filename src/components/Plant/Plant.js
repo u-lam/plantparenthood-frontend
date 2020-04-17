@@ -1,63 +1,169 @@
 import React from 'react';
 import './Plant.css';
-import Button from '@material-ui/core/Button';
-
-
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-
-import FavoriteIcon from '@material-ui/icons/Favorite';
-
+import { Button, Card, CardContent, CardActions, IconButton,
+        Typography, TextField, Grid } from '@material-ui/core';
+import { Dialog, DialogTitle, DialogContent, DialogContentText, 
+        DialogActions } from '@material-ui/core';
+import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 
 class Plant extends React.Component {
 
   state = {
     isEditing: false,
+    open: false,
+    id: this.props.plant._id,
     name: this.props.plant.name,
     sunlight: this.props.plant.sunlight,
     water: this.props.plant.water,
-    owner: this.props.plant.user
+    owner: this.props.firstName
   }
 
+  // **  EDIT PLANT: handleChange, handleEdit, handleSubmit **
+  handleChange = input => (e) => {
+    this.setState({ 
+      [input]: e.target.value 
+    })  
+  }
+ 
+  handleEdit = () => {
+    this.setState({
+      isEditing: !this.state.isEditing,
+      name: this.props.plant.name,
+      sunlight: this.props.plant.sunlight,
+      water: this.props.plant.water,
+    })
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    let updatedPlant = {
+      id: this.state.id,
+      name: this.state.name,
+      sunlight: this.state.sunlight,
+      water: this.state.water
+    }
+    this.props.handleAPIUpdate(updatedPlant);
+    this.setState({ isEditing: !this.state.isEditing })
+  }
+
+  
+  // **  DELETE PLANT: handleOpen, handleClose, handleDelete **
+  handleOpen = () => {
+    this.setState({ open: true })
+  }
+
+  handleClose = () => {
+    this.setState({ open: false })
+  }
+
+  handleDelete = (e) => {
+    e.preventDefault();
+    this.props.handleAPIDelete(this.state.id);
+    console.log('deleteAPI call line 63: ', this.state.id)
+    this.setState({ open: false })
+  }
+
+
   render() {
-    // console.log('plant.js: ', this.props.plant.user)
-    
+
     return (
-      <Card className='plantcard' >
-        <CardContent>
-          <Typography variant="body2" color="textSecondary">
-            <h3>Name: {this.state.name}</h3>
-            <h3>Sunlight: {this.state.sunlight}</h3>
-            <h3>Water: {this.state.water}</h3>
+      <div>
+        {/*****  DELETE DIALOG  *****/}
+        <Dialog open={this.state.open} onClose={this.handleClose}>
+          <DialogTitle id="form-dialog-title">Delete</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Are you sure you want to delete <strong>{this.state.name}</strong>?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleClose} color="primary">
+              Cancel
+            </Button>
+            <Button onClick={this.handleDelete} color="primary">
+              Yes, I'm sure.
+            </Button>
+          </DialogActions>
+        </Dialog>
 
-            {this.props.plant.user 
-            ? <h3>Owner: {this.state.owner}</h3>
-            : <p></p>
-            }
-          </Typography>
-        </CardContent>
+        {/*****  WHEN EDITING  *****/}
+        {this.state.isEditing && 
+          <Card className='plantcard' >
+            <CardContent>
+              <form onSubmit={this.handleSubmit}>
+                <Grid container spacing={1}>
+                  <Grid item xs={12}>
+                    <TextField
+                      autoComplete="name" variant="outlined"                 
+                      autoFocus type="text"             
+                      id="name" label="name"                  
+                      name="name" value={this.state.name}
+                      onChange={this.handleChange('name')}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      autoComplete="sunlight" variant="outlined"                 
+                      autoFocus type='text'
+                      id="sunlight" label="sunlight" 
+                      name="sunlight" value={this.state.sunlight}
+                      onChange={this.handleChange('sunlight')}           
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      autoComplete="water" variant="outlined"                 
+                      autoFocus type='text'
+                      id="water" label="water" 
+                      name="water" value={this.state.water}
+                      onChange={this.handleChange('water')}           
+                    />
+                  </Grid>
+                </Grid>
+                <br></br>
+                <Button size='small' type='submit' value='submit'>Submit</Button>
+                <Button size='small' onClick={this.handleEdit}>Cancel</Button> 
+              </form>
+            </CardContent>
+          </Card>
+        }
 
-        <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
-          </IconButton>
-          
-          {this.props.plant.user
-          ? <>
-              <Button size='small'>Donate</Button>
-              <Button size='small'>Trade</Button> 
-            </>  
-          : <Button size='small'>Adopt Me!</Button>
-          }
-        </CardActions>
-      </Card>        
+        {/*****  WHEN NOT EDITING  *****/}
+        {!this.state.isEditing && 
+          <Card className='plantcard' >
+            <CardContent>
+              <Typography variant="body2" color="textSecondary">
+                <img src='../plants.png' alt='plants' height='150' width='150'/><br></br>
+                <p>Name: {this.state.name}</p>
+                <p>Sunlight: {this.state.sunlight}</p>
+                <p>Water: {this.state.water}</p>
+
+                {this.props.plant.user 
+                ? <> Owner: {this.state.owner} </>
+                : null
+                }
+              </Typography>
+            </CardContent>
+
+            <CardActions disableSpacing>
+              {this.props.plant.user
+              ? <>
+                <IconButton aria-label="edit">
+                  <EditOutlinedIcon onClick={this.handleEdit}/>
+                </IconButton>
+                <IconButton aria-label="delete">
+                  <DeleteOutlineOutlinedIcon onClick={this.handleOpen}/>
+                </IconButton>
+                  <Button size='small'>Donate</Button>
+                  <Button size='small'>Trade</Button> 
+                </>  
+              : <Button size='small'>Adopt Me!</Button>
+              }
+            </CardActions>
+          </Card> 
+        }
+      </div>       
     )
   }
 }
