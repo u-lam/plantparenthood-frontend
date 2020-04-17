@@ -51,17 +51,28 @@ class PlantContainer extends React.Component {
   }
 
   handleAPIUpdate = (plant) => {
+    console.log('upate this plant', plant)
     PlantAPI.update(plant)
     .then(res => {
       let plants = this.state.plants
       let plantToUpdate = plants.findIndex(plant => plant._id === res._id)
-      plants[plantToUpdate] = res;
+      plants[plantToUpdate] = res.data;
       this.setState({ plants })
     }) 
   }
 
   handleAPIDelete = (id) => {
     PlantAPI.deletePlant(id)
+    .then(res => {
+      let plants = this.state.plants.filter(plant => {
+        return plant._id !== id
+      })
+      this.setState({ plants })
+    })
+  }
+
+  handleAPIDonate = (id) => {
+    PlantAPI.donate(id)
     .then(res => {
       let plants = this.state.plants.filter(plant => {
         return plant._id !== id
@@ -79,10 +90,12 @@ class PlantContainer extends React.Component {
 
   render() {
     let plants = this.state.plants;
+    console.log(plants)
     const { classes } = this.props;
     
 
     return (
+     
       <div>
         {/* MODAL TO ADD NEW PLANT, DATA PASSED TO PLANTNEW COMPONENT */}
         <Container>
@@ -116,6 +129,7 @@ class PlantContainer extends React.Component {
                   ? <Plant plant={plant} firstName={this.props.firstName} userId={this.props.id}
                     handleAPIUpdate={this.handleAPIUpdate}
                     handleAPIDelete={this.handleAPIDelete}
+                    handleAPIDonate={this.handleAPIDonate}
                     /> 
                   : null
                   }

@@ -39,7 +39,7 @@ class PlantAdopt extends React.Component {
               <Button size='small'>Donate</Button>
               <Button size='small'>Trade</Button> 
             </>  
-          : <Button size='small'>Adopt Me!</Button>
+          : <Button size='small' onClick={this.props.handleAdopt}>Adopt Me!</Button>
           }
         </CardActions>
       </Card>        

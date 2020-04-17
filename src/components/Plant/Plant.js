@@ -12,6 +12,7 @@ class Plant extends React.Component {
   state = {
     isEditing: false,
     open: false,
+    // isDonating: false,
     id: this.props.plant._id,
     name: this.props.plant.name,
     sunlight: this.props.plant.sunlight,
@@ -60,10 +61,15 @@ class Plant extends React.Component {
   handleDelete = (e) => {
     e.preventDefault();
     this.props.handleAPIDelete(this.state.id);
-    console.log('deleteAPI call line 63: ', this.state.id)
     this.setState({ open: false })
   }
 
+  // **  DONATE PLANT: handle
+  handleDonate = (e) => {
+    e.preventDefault();
+    this.props.handleAPIDonate(this.state.id)
+    this.setState({ open: false })
+  }
 
   render() {
 
@@ -155,14 +161,31 @@ class Plant extends React.Component {
                 <IconButton aria-label="delete">
                   <DeleteOutlineOutlinedIcon onClick={this.handleOpen}/>
                 </IconButton>
-                  <Button size='small'>Donate</Button>
-                  <Button size='small'>Trade</Button> 
+                  <Button size='small' onClick={this.handleOpen}>Donate</Button>
                 </>  
               : <Button size='small'>Adopt Me!</Button>
               }
             </CardActions>
           </Card> 
         }
+
+                {/*****  DONATE DIALOG  *****/}
+            <Dialog open={this.state.open} onClose={this.handleClose}>
+          <DialogTitle id="form-dialog-title">Donate</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Are you sure you want to donate <strong>{this.state.name}</strong>?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleClose} color="primary">
+              Cancel
+            </Button>
+            <Button onClick={this.handleDonate} color="primary">
+              Yes, I'm sure.
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>       
     )
   }

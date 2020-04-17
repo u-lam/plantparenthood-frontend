@@ -11,9 +11,10 @@ class PlantAdoptContainer extends React.Component {
     currentUser: '',
   }
 
-  // handleAdopt = () => {
-
-  // }
+  handleAdopt = (plant) => {
+    console.log('adopting plant')
+    
+  }
 
 
   componentDidMount() {
@@ -28,9 +29,8 @@ class PlantAdoptContainer extends React.Component {
 
   render() {
     let plants = this.state.plants;
-    console.log('plantadopt container logged in user: ' , this.props.user)
-    console.log(plants)
-   
+    console.log('plantadopt container logged in user: ' , this.props.firstName)
+ 
     return (
       <div>
         <h3>Plants to Adopt Container</h3>
@@ -40,12 +40,11 @@ class PlantAdoptContainer extends React.Component {
             {plants && plants.map(plant => {
               return (
                 <div key={plant._id}>
-                  {!plant.user
-                  ? <PlantAdopt plant={plant} key={plant._id}
-                    handleUpdate={this.handleUpdate}
-                    handleDelete={this.handleDelete}
+                  {!plant.user &&
+                   <PlantAdopt plant={plant} key={plant._id}
+                    handleAdopt={this.handleAdopt}
                     /> 
-                  : null
+                  // : null
                   }
                 </div>
               )
