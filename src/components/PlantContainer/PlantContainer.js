@@ -87,7 +87,7 @@ class PlantContainer extends React.Component {
       this.setState({ plants })
     })
   }
-
+  
 
   componentDidMount() {
     PlantAPI.index()

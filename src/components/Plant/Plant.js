@@ -12,6 +12,7 @@ class Plant extends React.Component {
   state = {
     isEditing: false,
     open: false,
+    openDonate: false,
     id: this.props.plant._id,
     name: this.props.plant.name,
     sunlight: this.props.plant.sunlight,
@@ -64,10 +65,18 @@ class Plant extends React.Component {
   }
 
   // **  DONATE PLANT: handleDonate, use the same handleClose and handleOpen for the dialog
+  handleOpenDonate = () => {
+    this.setState({ openDonate: true })
+  }
+
+  handleCloseDonate = () => {
+    this.setState({ openDonate: false })
+  }
+
   handleDonate = (e) => {
     e.preventDefault();
     this.props.handleAPIDonate(this.state.id)
-    this.setState({ open: false })
+    this.setState({ openDonate: false })
   }
 
   render() {
@@ -140,13 +149,14 @@ class Plant extends React.Component {
                 <IconButton aria-label="delete">
                   <DeleteOutlineOutlinedIcon onClick={this.handleOpen}/>
                 </IconButton>
-                  <Button size='small' onClick={this.handleOpen}>Donate</Button>
+                  <Button size='small' onClick={this.handleOpenDonate}>Donate</Button>
                 </>  
               : <Button size='small'>Adopt Me!</Button>
               }
             </CardActions>
           </Card> 
         }
+
 
         {/*****  DELETE DIALOG  *****/}
         <Dialog open={this.state.open} onClose={this.handleClose}>
@@ -166,8 +176,9 @@ class Plant extends React.Component {
           </DialogActions>
         </Dialog>
 
+
         {/*****  DONATE DIALOG  *****/}
-        <Dialog open={this.state.open} onClose={this.handleClose}>
+        <Dialog open={this.state.openDonate} onClose={this.handleCloseDonate}>
           <DialogTitle id="form-dialog-title">Donate</DialogTitle>
           <DialogContent>
             <DialogContentText>
@@ -175,7 +186,7 @@ class Plant extends React.Component {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
+            <Button onClick={this.handleCloseDonate} color="primary">
               Cancel
             </Button>
             <Button onClick={this.handleDonate} color="primary">
