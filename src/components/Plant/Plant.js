@@ -60,33 +60,20 @@ class Plant extends React.Component {
   handleDelete = (e) => {
     e.preventDefault();
     this.props.handleAPIDelete(this.state.id);
-    console.log('deleteAPI call line 63: ', this.state.id)
     this.setState({ open: false })
   }
 
+  // **  DONATE PLANT: handleDonate, use the same handleClose and handleOpen for the dialog
+  handleDonate = (e) => {
+    e.preventDefault();
+    this.props.handleAPIDonate(this.state.id)
+    this.setState({ open: false })
+  }
 
   render() {
 
     return (
       <div>
-        {/*****  DELETE DIALOG  *****/}
-        <Dialog open={this.state.open} onClose={this.handleClose}>
-          <DialogTitle id="form-dialog-title">Delete</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              Are you sure you want to delete <strong>{this.state.name}</strong>?
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
-              Cancel
-            </Button>
-            <Button onClick={this.handleDelete} color="primary">
-              Yes, I'm sure.
-            </Button>
-          </DialogActions>
-        </Dialog>
-
         {/*****  WHEN EDITING  *****/}
         {this.state.isEditing && 
           <Card className='plantcard' >
@@ -138,14 +125,12 @@ class Plant extends React.Component {
                 <p>Name: {this.state.name}</p>
                 <p>Sunlight: {this.state.sunlight}</p>
                 <p>Water: {this.state.water}</p>
-
                 {this.props.plant.user 
                 ? <> Owner: {this.state.owner} </>
                 : null
                 }
               </Typography>
             </CardContent>
-
             <CardActions disableSpacing>
               {this.props.plant.user
               ? <>
@@ -155,14 +140,50 @@ class Plant extends React.Component {
                 <IconButton aria-label="delete">
                   <DeleteOutlineOutlinedIcon onClick={this.handleOpen}/>
                 </IconButton>
-                  <Button size='small'>Donate</Button>
-                  <Button size='small'>Trade</Button> 
+                  <Button size='small' onClick={this.handleOpen}>Donate</Button>
                 </>  
               : <Button size='small'>Adopt Me!</Button>
               }
             </CardActions>
           </Card> 
         }
+
+        {/*****  DELETE DIALOG  *****/}
+        <Dialog open={this.state.open} onClose={this.handleClose}>
+          <DialogTitle id="form-dialog-title">Delete</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Are you sure you want to delete <strong>{this.state.name}</strong>?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleClose} color="primary">
+              Cancel
+            </Button>
+            <Button onClick={this.handleDelete} color="primary">
+              Yes, I'm sure.
+            </Button>
+          </DialogActions>
+        </Dialog>
+
+        {/*****  DONATE DIALOG  *****/}
+        <Dialog open={this.state.open} onClose={this.handleClose}>
+          <DialogTitle id="form-dialog-title">Donate</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Are you sure you want to donate <strong>{this.state.name}</strong>?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleClose} color="primary">
+              Cancel
+            </Button>
+            <Button onClick={this.handleDonate} color="primary">
+              Yes, I'm sure.
+            </Button>
+          </DialogActions>
+        </Dialog>
+
       </div>       
     )
   }
