@@ -133,6 +133,7 @@ class PlantContainer extends React.Component {
                   ? <Plant plant={plant} firstName={this.props.firstName} userId={this.props.id}
                     handleAPIUpdate={this.handleAPIUpdate}
                     handleAPIDelete={this.handleAPIDelete}
+                    handleAPIDonate={this.handleAPIDonate}
                     /> 
                   : null
                   }
