@@ -1,6 +1,5 @@
 import React from 'react';
 import PlantAPI from '../../api/PlantAPI';
-// import './PlantContainer.css';
 import Plant from '../Plant/Plant';
 import PlantNew from '../PlantNew/PlantNew';
 import { Container, IconButton, Modal, Backdrop, Fade }  from '@material-ui/core';
@@ -20,6 +19,15 @@ const styles = theme => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
+  container: {
+    backgroundColor: '#cfe8fc', 
+    height: '100%', 
+    width: '80vw',
+    display: 'flex', 
+    flexDirection: 'row', 
+    flexWrap: 'wrap', 
+    justifyContent: 'center'
+  }
 });
 
 
@@ -39,7 +47,7 @@ class PlantContainer extends React.Component {
     this.setState({ showModal: false })
   }
 
-  // API calls to perform full CRUD
+  // API calls to perform CRUD & Donate feature
   handleAPICreate = (plant) => {
     PlantAPI.create(plant)
     .then(res => {
@@ -51,7 +59,6 @@ class PlantContainer extends React.Component {
   }
 
   handleAPIUpdate = (plant) => {
-    console.log('upate this plant', plant)
     PlantAPI.update(plant)
     .then(res => {
       let plants = this.state.plants
@@ -81,6 +88,7 @@ class PlantContainer extends React.Component {
     })
   }
 
+
   componentDidMount() {
     PlantAPI.index()
     .then(res => {
@@ -90,13 +98,11 @@ class PlantContainer extends React.Component {
 
   render() {
     let plants = this.state.plants;
-    console.log(plants)
     const { classes } = this.props;
-    
+
 
     return (
-     
-      <div>
+       <div>
         {/* MODAL TO ADD NEW PLANT, DATA PASSED TO PLANTNEW COMPONENT */}
         <Container>
           <h3>My Plant Container</h3>
@@ -119,9 +125,7 @@ class PlantContainer extends React.Component {
         <br></br>
 
         {/* PASSING DATA TO PLANT COMPONENT */}
-        <Container className='plantcontainer'
-            style={{ backgroundColor: '#cfe8fc', height: '100%', width: '80vw',
-            display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}>
+        <Container className={classes.container}>
             {plants && plants.map(plant => {
               return (
                 <div key={plant._id}>                 
@@ -129,7 +133,6 @@ class PlantContainer extends React.Component {
                   ? <Plant plant={plant} firstName={this.props.firstName} userId={this.props.id}
                     handleAPIUpdate={this.handleAPIUpdate}
                     handleAPIDelete={this.handleAPIDelete}
-                    handleAPIDonate={this.handleAPIDonate}
                     /> 
                   : null
                   }

@@ -12,7 +12,6 @@ class Plant extends React.Component {
   state = {
     isEditing: false,
     open: false,
-    // isDonating: false,
     id: this.props.plant._id,
     name: this.props.plant.name,
     sunlight: this.props.plant.sunlight,
@@ -64,7 +63,7 @@ class Plant extends React.Component {
     this.setState({ open: false })
   }
 
-  // **  DONATE PLANT: handle
+  // **  DONATE PLANT: handleDonate, use the same handleClose and handleOpen for the dialog
   handleDonate = (e) => {
     e.preventDefault();
     this.props.handleAPIDonate(this.state.id)
@@ -75,24 +74,6 @@ class Plant extends React.Component {
 
     return (
       <div>
-        {/*****  DELETE DIALOG  *****/}
-        <Dialog open={this.state.open} onClose={this.handleClose}>
-          <DialogTitle id="form-dialog-title">Delete</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              Are you sure you want to delete <strong>{this.state.name}</strong>?
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
-              Cancel
-            </Button>
-            <Button onClick={this.handleDelete} color="primary">
-              Yes, I'm sure.
-            </Button>
-          </DialogActions>
-        </Dialog>
-
         {/*****  WHEN EDITING  *****/}
         {this.state.isEditing && 
           <Card className='plantcard' >
@@ -144,14 +125,12 @@ class Plant extends React.Component {
                 <p>Name: {this.state.name}</p>
                 <p>Sunlight: {this.state.sunlight}</p>
                 <p>Water: {this.state.water}</p>
-
                 {this.props.plant.user 
                 ? <> Owner: {this.state.owner} </>
                 : null
                 }
               </Typography>
             </CardContent>
-
             <CardActions disableSpacing>
               {this.props.plant.user
               ? <>
@@ -169,8 +148,26 @@ class Plant extends React.Component {
           </Card> 
         }
 
-                {/*****  DONATE DIALOG  *****/}
-            <Dialog open={this.state.open} onClose={this.handleClose}>
+        {/*****  DELETE DIALOG  *****/}
+        <Dialog open={this.state.open} onClose={this.handleClose}>
+          <DialogTitle id="form-dialog-title">Delete</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Are you sure you want to delete <strong>{this.state.name}</strong>?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleClose} color="primary">
+              Cancel
+            </Button>
+            <Button onClick={this.handleDelete} color="primary">
+              Yes, I'm sure.
+            </Button>
+          </DialogActions>
+        </Dialog>
+
+        {/*****  DONATE DIALOG  *****/}
+        <Dialog open={this.state.open} onClose={this.handleClose}>
           <DialogTitle id="form-dialog-title">Donate</DialogTitle>
           <DialogContent>
             <DialogContentText>
@@ -186,6 +183,7 @@ class Plant extends React.Component {
             </Button>
           </DialogActions>
         </Dialog>
+
       </div>       
     )
   }

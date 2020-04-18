@@ -1,5 +1,4 @@
 import React from 'react';
-import '../Plant/Plant.css';
 import { Button, Card, CardContent, CardActions, IconButton, Typography} from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
@@ -18,6 +17,7 @@ class PlantAdopt extends React.Component {
       <Card className='plantcard' >
         <CardContent>
           <Typography variant="body2" color="textSecondary">
+          <img src='../plogo.png' alt='plants' height='150' width='150'/><br></br>
             <h3>Name: {this.state.name}</h3>
             <h3>Sunlight: {this.state.sunlight}</h3>
             <h3>Water: {this.state.water}</h3>
