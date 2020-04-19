@@ -1,11 +1,11 @@
 .login {
   background: url('/coverauth2.jpeg') no-repeat center fixed; 
   background-size: cover;
-  background-color: lightgoldenrodyellow;
+  background-color: red;
   height: 95vh;
   width: 100vw;
   overflow: hidden;
-  filter: blur(0.5px)
+  filter: blur(0.3px)
 }
 
 .loginform {

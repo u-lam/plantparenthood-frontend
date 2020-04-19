@@ -1,4 +1,5 @@
 import React from 'react';
+import User from '../User/User';
 import PlantAPI from '../../api/PlantAPI';
 import Plant from '../Plant/Plant';
 import PlantNew from '../PlantNew/PlantNew';
@@ -40,10 +41,6 @@ const styles = theme => ({
   iconbtn: {
     color: "#00897b" 
   },
-  // addplant: {
-  //   backgroundColor: 'red',
-    
-  // }
 });
 
 

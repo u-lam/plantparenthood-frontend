@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
-import { Menu, MenuItem } from '@material-ui/core';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import { Avatar, Menu, MenuItem } from '@material-ui/core';
+// import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 
 function Header (props) {
@@ -29,111 +29,42 @@ function Header (props) {
 
           { (props.user) 
           ? <>
-          <li><Link to={"/plants"}>Adopt A Plant</Link></li>
-          <li><Link to={"/myplants"}>My Plants</Link></li>
-          <li>
-            {/* <div>  */}
-           <AccountCircleIcon className='icon' color="primary" fontSize="large" onClick={handleClick}/>
-           <Menu id="simple-menu"
-                anchorEl={anchorEl} keepMounted
-                open={Boolean(anchorEl)} onClose={handleClose}
-            >
-            <Link to={"/user"}>
-              <MenuItem onClick={handleClose}>View Profile</MenuItem> 
-            </Link>
-            <Link to={"/logout"} onClick={props.logout}>
-              <MenuItem onClick={handleClose}>Log Out</MenuItem> 
-            </Link>
-          </Menu>
-      
-          {/* </div> */}
-          </li>
-          </>
-        : <>
-          <li><Link to={"/login"}>Login</Link></li>
-          <li><Link to={"/register"}>Signup</Link></li>
-        </>}
+            <li><Link to={"/plants"}>Adopt A Plant</Link></li>
+            <li><Link to={"/myplants"}>My Plants</Link></li>
+            <li>
+            {/* <AccountCircleIcon className='icon' style={{ color: "#f2ed6f"}} fontSize="large" onClick={handleClick}/> */}
+              <Avatar alt="Teddy Lam" src="../../profile.JPG" className='icon'  onClick={handleClick}/>
+              <Menu id="simple-menu"
+                    anchorEl={anchorEl} keepMounted
+                    open={Boolean(anchorEl)} onClose={handleClose}
+              >
+                <Link to={"/user"}>
+                  <MenuItem onClick={handleClose}>View Profile</MenuItem> 
+                </Link>
+                <Link to={"/logout"} onClick={props.logout}>
+                  <MenuItem onClick={handleClose}>Log Out</MenuItem> 
+                </Link>
+              </Menu>
+            </li>
+            </>
+          : <>
+            <li><Link to={"/login"}>Login</Link></li>
+            <li><Link to={"/register"}>Signup</Link></li>
+            </>
+          }
         </ul>
        </div>
       </div>
-      </nav>
-    
+    </nav>
   )
 }
 
-// $(document).ready(function(){
-	
-// 	$('.mobile-icon').click( function() {
-// 		$('nav ul').toggleClass("showing");
-
-// 	});
-
-// });
 export default Header;
 
 
-
-
-
-// <div className='header'>
-// <nav className="navbar">
-//   <div className="nav-left"> 
-//     <Link className="nav-name" to={"/"}>
-//       <Avatar style={{ backgroundColor:'#00897b' }}>
-//         <LocalFloristOutlinedIcon /> 
-//       </Avatar>
-//     </Link>
-//   </div>
-
-//   <div className='about'> 
-//     <Link className="nav-name" to={"/about"}>
-//       About
-//     </Link>
-//   </div>
-
-
-//   { (props.user) 
-//   ? <>
-//       <ButtonGroup variant="text" color="primary" >
-//       <div className="navbar-right"> 
-//         <Link className="nav-logout" to={"/plants"}>
-//           <Button variant="outlined" color="secondary"  size="small">Adopt a Plant</Button>
-//         </Link>
-//       </div>
-//       <div className="navbar-right"> 
-//         <Link className="nav-logout" to={"/myplants"}>
-//           <Button variant="text" color="primary" size="small"> My Plants</Button>
-//         </Link>
-//       </div>
-//       <div className="navbar-right"> 
-//           <AccountCircleIcon color="primary" fontSize="large" onClick={handleClick}/>
-//           <Menu id="simple-menu"
-//             anchorEl={anchorEl} keepMounted
-//             open={Boolean(anchorEl)} onClose={handleClose}
-//           >
-//             <Link className="nav-logout" to={"/user"}>
-//               <MenuItem onClick={handleClose}>View Profile</MenuItem> 
-//             </Link>
-//             <Link className="nav-logout" to={"/logout"} onClick={props.logout}>
-//               <MenuItem onClick={handleClose}>Log Out</MenuItem> 
-//             </Link>
-//           </Menu>
-      
-//       </div>
-//         </ButtonGroup>
-//     </>
-//   : <div className="navbar-right">
-//       <div> 
-//         <Link className="nav-register" to={"/register"}>
-//           <button className='btn'>Sign Up</button>
-//         </Link>
-//       </div>
-//       <div> 
-//         <Link className="nav-login" to={"/login"}>
-//           <button className='btn'>Log In</button>
-//         </Link>
-//       </div>
-//     </div>
-//   }
-// </nav>
-// </div>
+// To toggle hamburger icon when screen size is reduced
+// $(document).ready(function(){
+// 	$('.mobile-icon').click( function() {
+// 		$('nav ul').toggleClass("showing");
+// 	});
+// });
