@@ -51,8 +51,6 @@ class Login extends React.Component {
 
   render() {
     const { classes } = this.props;
-    console.log('hello')
-    console.log(this.state)
 
     return (
       <Container component="main" maxWidth="xs">

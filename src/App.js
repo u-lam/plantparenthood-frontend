@@ -1,11 +1,9 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import setAuthHeader from './utils/setAuthHeader';
 import './App.css';
 import Header from './layout/Header/Header';
 import Footer from './layout/Footer/Footer';
-import Home from './components/Home/Home';
 import Routes from './config/routes';
 import UserAPI from './api/UserAPI';
 
@@ -33,8 +31,7 @@ class App extends React.Component {
           user: decoded.email,
           id: decoded._id,
           firstName: decoded.firstName,
-          lastName: decoded.lastName,
-          isLoggedIn: false
+          lastName: decoded.lastName
         })
       }
     })
@@ -127,7 +124,7 @@ class App extends React.Component {
           login={this.login} 
           update={this.update}
           delete={this.delete}
-          user={this.state.user}  //only email
+          user={this.state.user}  // user email
           id={this.state.id} 
           firstName={this.state.firstName}
           lastName={this.state.lastName}

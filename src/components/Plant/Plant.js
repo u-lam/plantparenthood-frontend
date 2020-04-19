@@ -1,7 +1,7 @@
 import React from 'react';
 import './Plant.css';
 import { Button, Card, CardContent, CardActions, IconButton,
-        Typography, TextField, Grid } from '@material-ui/core';
+        TextField, Grid } from '@material-ui/core';
 import { Dialog, DialogTitle, DialogContent, DialogContentText, 
         DialogActions } from '@material-ui/core';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
@@ -12,6 +12,7 @@ class Plant extends React.Component {
   state = {
     isEditing: false,
     open: false,
+    openDonate: false,
     id: this.props.plant._id,
     name: this.props.plant.name,
     sunlight: this.props.plant.sunlight,
@@ -60,14 +61,22 @@ class Plant extends React.Component {
   handleDelete = (e) => {
     e.preventDefault();
     this.props.handleAPIDelete(this.state.id);
-    this.setState({ open: false })
+    this.setState({ open: false });
   }
 
   // **  DONATE PLANT: handleDonate, use the same handleClose and handleOpen for the dialog
+  handleOpenDonate = () => {
+    this.setState({ openDonate: true })
+  }
+
+  handleCloseDonate = () => {
+    this.setState({ openDonate: false })
+  }
+
   handleDonate = (e) => {
     e.preventDefault();
-    this.props.handleAPIDonate(this.state.id)
-    this.setState({ open: false })
+    this.props.handleAPIDonate(this.state.id);
+    this.setState({ openDonate: false })
   }
 
   render() {
@@ -120,7 +129,6 @@ class Plant extends React.Component {
         {!this.state.isEditing && 
           <Card className='plantcard' >
             <CardContent>
-              <Typography variant="body2" color="textSecondary">
                 <img src='../plants.png' alt='plants' height='150' width='150'/><br></br>
                 <p>Name: {this.state.name}</p>
                 <p>Sunlight: {this.state.sunlight}</p>
@@ -129,24 +137,24 @@ class Plant extends React.Component {
                 ? <> Owner: {this.state.owner} </>
                 : null
                 }
-              </Typography>
             </CardContent>
             <CardActions disableSpacing>
               {this.props.plant.user
               ? <>
-                <IconButton aria-label="edit">
-                  <EditOutlinedIcon onClick={this.handleEdit}/>
+                <IconButton aria-label="edit" onClick={this.handleEdit}>
+                  <EditOutlinedIcon />
                 </IconButton>
-                <IconButton aria-label="delete">
-                  <DeleteOutlineOutlinedIcon onClick={this.handleOpen}/>
+                <IconButton aria-label="delete" onClick={this.handleOpen}>
+                  <DeleteOutlineOutlinedIcon />
                 </IconButton>
-                  <Button size='small' onClick={this.handleOpen}>Donate</Button>
+                  <Button size='small' onClick={this.handleOpenDonate}>Donate</Button>
                 </>  
               : <Button size='small'>Adopt Me!</Button>
               }
             </CardActions>
           </Card> 
         }
+
 
         {/*****  DELETE DIALOG  *****/}
         <Dialog open={this.state.open} onClose={this.handleClose}>
@@ -166,8 +174,9 @@ class Plant extends React.Component {
           </DialogActions>
         </Dialog>
 
+
         {/*****  DONATE DIALOG  *****/}
-        <Dialog open={this.state.open} onClose={this.handleClose}>
+        <Dialog open={this.state.openDonate} onClose={this.handleCloseDonate}>
           <DialogTitle id="form-dialog-title">Donate</DialogTitle>
           <DialogContent>
             <DialogContentText>
@@ -175,7 +184,7 @@ class Plant extends React.Component {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
+            <Button onClick={this.handleCloseDonate} color="primary">
               Cancel
             </Button>
             <Button onClick={this.handleDonate} color="primary">
