@@ -10,3 +10,10 @@
   align-items: center;
   max-width: 250px;
 }
+
+img {
+  height: 250px;
+  width: 250px;
+  border-radius: 8pt;
+  transition: 0.2s ease-in-out;
+}

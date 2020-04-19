@@ -1,15 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
-import { Avatar, Button } from '@material-ui/core';
+import { Avatar, Button, ButtonGroup, Menu, MenuItem } from '@material-ui/core';
 import LocalFloristOutlinedIcon from '@material-ui/icons/LocalFloristOutlined';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-
-// import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-
-
 
 
 function Header (props) {
@@ -31,21 +25,25 @@ function Header (props) {
           <div className="nav-left"> 
             <Link className="nav-name" to={"/"}>
             <Avatar style={{ backgroundColor:'#00897b' }}>
-              <LocalFloristOutlinedIcon />
+              <LocalFloristOutlinedIcon /> 
             </Avatar>
             </Link>
+            {/* <Link className="nav-name" to={"/about"}>
+              About
+            </Link> */}
           </div>
 
           { (props.user) 
           ? <>
+              <ButtonGroup variant="text" color="primary" >
               <div className="navbar-right"> 
                 <Link className="nav-logout" to={"/plants"}>
-                  <Button variant="outlined" color="primary">View Donated Plants</Button>
+                  <Button variant="outlined" color="secondary"  size="small">Adopt a Plant</Button>
                 </Link>
               </div>
               <div className="navbar-right"> 
                 <Link className="nav-logout" to={"/myplants"}>
-                  <Button variant="outlined" color="secondary">View My Plants</Button>
+                  <Button variant="text" color="primary" size="small"> My Plants</Button>
                 </Link>
               </div>
               <div className="navbar-right"> 
@@ -61,7 +59,9 @@ function Header (props) {
                       <MenuItem onClick={handleClose}>Log Out</MenuItem> 
                     </Link>
                   </Menu>
+              
               </div>
+                </ButtonGroup>
             </>
           : <>
             <div className="navbar-right"> 

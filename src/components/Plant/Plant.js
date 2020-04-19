@@ -130,12 +130,12 @@ class Plant extends React.Component {
         {!this.state.isEditing && 
           <Card className='plantcard' >
             <CardContent>
-                <img src='../pointy.jpeg' alt='plants' height='180' width='180'/><br></br>
-                <h4>Name: {this.state.name}</h4>
-                <p>Sunlight: {this.state.sunlight}</p>
-                <h5>Water: {this.state.water}</h5>
+                <img src='../pointy.jpeg' alt='plants'/><br></br>
+                <h3>Name: {this.state.name}</h3>
+                <h5>Sunlight: {this.state.sunlight}</h5>
+                <h5>Water: {this.state.water}</h5> <br></br>
                 {this.props.plant.user 
-                ? <> Owner: {this.state.owner} </>
+                ? <h3> Owner: {this.state.owner} </h3>
                 : null
                 }
             </CardContent>

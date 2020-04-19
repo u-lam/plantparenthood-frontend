@@ -4,17 +4,24 @@
   justify-content: flex-start;
   align-items: center;
   width: 100%;
+  height: auto;
 }
 
 .nav-left {
   text-align: left;
   width: 70%;  
-  margin-left: 100px;
+  margin-left: 30px;
+}
+
+.nav-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: smaller;
 }
 
 .nav-name, .nav-register, .nav-login, .nav-logout {
   font-size: 1rem;
   text-decoration: none;
-  padding: 5px 14px 5px 5px;
-
 }

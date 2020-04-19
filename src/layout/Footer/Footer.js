@@ -9,7 +9,6 @@ function Footer() {
     <footer className='footer'>
         <Container maxWidth="sm">
           <h4>Plant Parenthood &copy; 2020</h4>
-          <h5>Created by Uyen Lam</h5>
         </Container>
     </footer>
   );

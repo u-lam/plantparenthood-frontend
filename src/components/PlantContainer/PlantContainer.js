@@ -28,6 +28,15 @@ const styles = theme => ({
     flexWrap: 'wrap', 
     justifyContent: 'space-between'
   },
+  container2: {
+    backgroundColor: 'lightblue', 
+    height: '80%', 
+    width: '80vw',
+    display: 'flex', 
+    flexDirection: 'row', 
+    flexWrap: 'wrap', 
+    justifyContent: 'center'
+  },
   iconbtn: {
     color: "#00897b" 
   },
@@ -115,7 +124,9 @@ class PlantContainer extends React.Component {
           <h3>My Plant Container</h3>
           <div className={classes.addplant}>
             <IconButton className={classes.iconbtn} onClick={this.showModal}>
-              <AddCircleOutlineIcon /> Add Plant
+              <h6>Add Plant</h6>
+              <AddCircleOutlineIcon />
+             
             </IconButton>
           </div>
           <Modal
@@ -133,7 +144,7 @@ class PlantContainer extends React.Component {
         <br></br>
 
         {/* PASSING DATA TO PLANT COMPONENT */}
-        <Container className={classes.container}>
+        <Container className={classes.container2}>
             {plants && plants.map(plant => {
               return (
                 <div key={plant._id}>                 
