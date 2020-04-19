@@ -4,15 +4,12 @@
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  /* background: rgb(58,180,87);
-  background: linear-gradient(90deg, rgba(58,180,87,0.5054247032640949) 0%, rgba(29,253,118,0.43420808605341243) 0%, rgba(224,252,69,0) 100%); */
-  font-family: 'Atma', cursive;
-  font-size: 1.5rem;
 }
 
 .nav-left {
   text-align: left;
-  width: 85%;  
+  width: 70%;  
+  margin-left: 100px;
 }
 
 .nav-name, .nav-register, .nav-login, .nav-logout {
@@ -21,5 +18,3 @@
   padding: 5px 14px 5px 5px;
 
 }
-
-

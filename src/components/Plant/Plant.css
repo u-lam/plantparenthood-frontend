@@ -1,5 +1,5 @@
 .plantcard {
-  /* max-width: 300px; */
+  max-width: 350px;
   margin: 10px;
   flex: 1 0 250px;
 }

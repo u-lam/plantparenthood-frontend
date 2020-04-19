@@ -7,7 +7,7 @@ import PlantAdopt from '../PlantAdopt/PlantAdopt';
 
 const styles = theme => ({
   container: {
-    backgroundColor: '#cfe8fc', 
+    // backgroundColor: '#cfe8fc', 
     height: '100%', 
     width: '80vw',
     display: 'flex', 

@@ -1,11 +1,12 @@
 import React from 'react';
 import './Plant.css';
 import { Button, Card, CardContent, CardActions, IconButton,
-        TextField, Grid } from '@material-ui/core';
+        Divider, TextField, Grid } from '@material-ui/core';
 import { Dialog, DialogTitle, DialogContent, DialogContentText, 
         DialogActions } from '@material-ui/core';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
+
 
 class Plant extends React.Component {
 
@@ -129,15 +130,16 @@ class Plant extends React.Component {
         {!this.state.isEditing && 
           <Card className='plantcard' >
             <CardContent>
-                <img src='../plants.png' alt='plants' height='150' width='150'/><br></br>
-                <p>Name: {this.state.name}</p>
+                <img src='../pointy.jpeg' alt='plants' height='180' width='180'/><br></br>
+                <h4>Name: {this.state.name}</h4>
                 <p>Sunlight: {this.state.sunlight}</p>
-                <p>Water: {this.state.water}</p>
+                <h5>Water: {this.state.water}</h5>
                 {this.props.plant.user 
                 ? <> Owner: {this.state.owner} </>
                 : null
                 }
             </CardContent>
+            <Divider light />
             <CardActions disableSpacing>
               {this.props.plant.user
               ? <>

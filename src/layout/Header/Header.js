@@ -1,40 +1,66 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
-import Button from '@material-ui/core/Button';
+import { Avatar, Button } from '@material-ui/core';
+import LocalFloristOutlinedIcon from '@material-ui/icons/LocalFloristOutlined';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+
+// import Button from '@material-ui/core/Button';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 
 
-const Header = (props) => {
+
+function Header (props) {
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (e) => {
+    setAnchorEl(e.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
+
 
     return (
       <div className='header'>
         <nav className="navbar">
           <div className="nav-left"> 
-            <Link className="nav-name" to={"/"}>Plant Parenthood</Link>
+            <Link className="nav-name" to={"/"}>
+            <Avatar style={{ backgroundColor:'#00897b' }}>
+              <LocalFloristOutlinedIcon />
+            </Avatar>
+            </Link>
           </div>
 
           { (props.user) 
           ? <>
               <div className="navbar-right"> 
                 <Link className="nav-logout" to={"/plants"}>
-                  <Button variant="outlined" color="primary">Plants</Button>
+                  <Button variant="outlined" color="primary">View Donated Plants</Button>
                 </Link>
               </div>
               <div className="navbar-right"> 
                 <Link className="nav-logout" to={"/myplants"}>
-                  <Button variant="outlined" color="secondary">MyPlants</Button>
+                  <Button variant="outlined" color="secondary">View My Plants</Button>
                 </Link>
               </div>
               <div className="navbar-right"> 
-                <Link className="nav-logout" to={"/user"}>
-                  <Button variant="outlined" color="secondary">Profile</Button>
-                </Link>
-              </div>
-              <div className="navbar-right"> 
-                <Link className="nav-logout" to={"/logout"} onClick={props.logout}>
-                  <Button variant="outlined" color="secondary">Log Out</Button>
-                </Link>
+                  <AccountCircleIcon color="primary" fontSize="large" onClick={handleClick}/>
+                  <Menu id="simple-menu"
+                    anchorEl={anchorEl} keepMounted
+                    open={Boolean(anchorEl)} onClose={handleClose}
+                  >
+                    <Link className="nav-logout" to={"/user"}>
+                      <MenuItem onClick={handleClose}>View Profile</MenuItem> 
+                    </Link>
+                    <Link className="nav-logout" to={"/logout"} onClick={props.logout}>
+                      <MenuItem onClick={handleClose}>Log Out</MenuItem> 
+                    </Link>
+                  </Menu>
               </div>
             </>
           : <>

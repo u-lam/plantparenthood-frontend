@@ -20,14 +20,21 @@ const styles = theme => ({
     padding: theme.spacing(2, 4, 3),
   },
   container: {
-    backgroundColor: '#cfe8fc', 
+    backgroundColor: 'lightgray', 
     height: '100%', 
     width: '80vw',
     display: 'flex', 
     flexDirection: 'row', 
     flexWrap: 'wrap', 
-    justifyContent: 'center'
-  }
+    justifyContent: 'space-between'
+  },
+  iconbtn: {
+    color: "#00897b" 
+  },
+  // addplant: {
+  //   backgroundColor: 'red',
+    
+  // }
 });
 
 
@@ -104,12 +111,13 @@ class PlantContainer extends React.Component {
     return (
        <div>
         {/* MODAL TO ADD NEW PLANT, DATA PASSED TO PLANTNEW COMPONENT */}
-        <Container>
+        <Container className={classes.container}>
           <h3>My Plant Container</h3>
-          <IconButton style={{ color: "#00897b" }} onClick={this.showModal}>
-            <AddCircleOutlineIcon />
-          </IconButton>
-
+          <div className={classes.addplant}>
+            <IconButton className={classes.iconbtn} onClick={this.showModal}>
+              <AddCircleOutlineIcon /> Add Plant
+            </IconButton>
+          </div>
           <Modal
             aria-labelledby="transition-modal-title"
             aria-describedby="transition-modal-description"
