@@ -1,47 +1,16 @@
-/* .navbar {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100%;
-  height: auto;
-  background-color: #c7f0db;
-}
-
-.nav-left {
-  text-align: left;
-  /* width: 100%;   */
-  /* margin-left: 30px;
-}
-
-.nav-right {
-  display: row;
-  align-items: center;
-  justify-content: left;
-}
-
-.nav-name, .nav-register, .nav-login, .nav-logout {
-  font-size: 1rem;
-  text-decoration: none;
-}
-
-btn {
-  font-size: 50px;
-} */ 
-
 * {
 	margin:0;
 	padding:0;
-}
+}  
 
 .nav-bar {
 	width: 100%;
-	position: fixed;
-	height:auto;
+	position: relative;
+	height: auto;
 	z-index: 999;
 	top: 0;
 	font-size: 16px;
-  background-color: #64b2cd;
+  background-color: #84a9ac;
 }
 .nav-bar li:last-child {
   margin-right: 60px;
@@ -63,18 +32,14 @@ nav ul {
 	text-align:right;
 	padding: 3px;
 	margin-left: 0;
-  -webkit-transition: max-height 0.4s;
-	-ms-transition: max-height 0.4s;
-	-moz-transition: max-height 0.4s;
-	-0-transition: max-height 0.4s;
+	width: 100%;
 	transition: max-height 0.4s;
 }
 
 nav ul li {
   display: inline-block;
-  
 	text-transform: uppercase;
-	font-family: monospace, Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-family: monospace, "Montserrat", "Helvetica Neue",Helvetica,Arial,sans-serif;
 	font-weight: 300;
 	padding: 10px 15px;
 	letter-spacing: 1px;
@@ -121,14 +86,12 @@ nav ul li {
 			max-height: 0px;
 			padding: 0px;
 		}
-		
-		/* mobile nav  */
+
 		.showing {
 			max-height: 20em;
 			padding-bottom: 10px;
 			font-size: 18px;
 		}
-		/* end */
 
 		.nav-bar {
 			width:100%;
@@ -150,4 +113,4 @@ nav ul li {
 		.nav-bar {
 			display: block;
 		}
-}
+} 

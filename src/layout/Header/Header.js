@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
-import { Avatar, Button, ButtonGroup, Menu, MenuItem } from '@material-ui/core';
-import LocalFloristOutlinedIcon from '@material-ui/icons/LocalFloristOutlined';
+import { Menu, MenuItem } from '@material-ui/core';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 

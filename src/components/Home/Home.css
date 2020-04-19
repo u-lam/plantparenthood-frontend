@@ -1,13 +1,9 @@
 .home {
-  background: url('/bgplant.jpeg') no-repeat center center fixed ;
+  background: url('/bgplant.jpeg') no-repeat center fixed; 
   background-size: cover;
-  background-color: #f2f2f2;
-  height: 85vh;
+  background-color: #999;
+  height: 95vh;
   width: 100vw;
+  overflow: hidden;
 }
 
-/* .sideitems {
-  font-family: monospace, Arial, Helvetica, sans-serif;
-  width: 30%;
-  height: 30%;
-} */
