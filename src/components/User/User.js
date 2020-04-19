@@ -1,15 +1,13 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Avatar, Button, Card, CardContent, CardActions, IconButton,
-  Typography, TextField, Grid } from '@material-ui/core';
+          TextField, Grid } from '@material-ui/core';
 import { Dialog, DialogTitle, DialogContent, 
-  DialogContentText, DialogActions } from '@material-ui/core';
+          DialogContentText, DialogActions } from '@material-ui/core';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import UserAPI from '../../api/UserAPI';
 
-
-// user = email address
 
 const styles = theme => ({
   root: {
@@ -94,10 +92,6 @@ class User extends React.Component {
   }
 
   render() {
-    // console.log('this is props id:', this.props.id)
-    // console.log('this is props:', this.props)
-    // console.log('this is state:', this.state)
-    // console.log(this.state.isEditing)
     const { classes } = this.props
 
     return (
@@ -108,20 +102,18 @@ class User extends React.Component {
         {!this.state.isEditing && 
           <Card className={classes.root} >
                <CardActions disableSpacing>
-                  <IconButton aria-label="edit">
-                    <EditOutlinedIcon onClick={this.handleEdit}/>Edit {this.props.firstName}
+                  <IconButton onClick={this.handleEdit}>
+                    <EditOutlinedIcon />Edit {this.props.firstName}
                   </IconButton>
-                  <IconButton>
-                    <HighlightOffIcon onClick={this.handleOpen} />Delete {this.props.firstname}
+                  <IconButton onClick={this.handleOpen}>
+                    <HighlightOffIcon  />Delete {this.props.firstname}
                   </IconButton>
                 </CardActions>
             <CardContent>
-              <Typography variant="body2" color="textSecondary">
                 <Avatar alt="Teddy Lam" src="../../profile.JPG" className={classes.large}/><br></br>
                   <p>First Name: {this.state.firstName}</p>
                   <p>Last Name: {this.state.lastName}</p>
                   <p>Registered Email: {this.state.email}</p>
-              </Typography>
             </CardContent>
           </Card> 
         }

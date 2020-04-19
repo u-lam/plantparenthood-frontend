@@ -8,18 +8,6 @@ import PlantContainer from '../components/PlantContainer/PlantContainer';
 import PlantAdoptContainer from '../components/PlantAdoptContainer/PlantAdoptContainer';
 
 
-{/*  FROM App.js
-register={this.register} 
-login={this.login} 
-update={this.update}
-delete={this.delete}
-user={this.state.user}  // email
-id={this.state.id} 
-firstName={this.state.firstName}
-lastName={this.state.lastName}
-isLoggedIn={this.state.isLoggedIn}
- */}
-
 const Routes = (props) => {
  
   return (
@@ -30,7 +18,7 @@ const Routes = (props) => {
       <Route path='/register' 
         render={() => props.user
         ? <Redirect to='/login' />
-        : <Register register={props.register} /> }
+        : <Register register={props.register} login={props.login}/> }
       />
 
       <Route path='/login' 

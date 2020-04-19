@@ -1,7 +1,7 @@
 import React from 'react';
 import './Plant.css';
 import { Button, Card, CardContent, CardActions, IconButton,
-        Typography, TextField, Grid } from '@material-ui/core';
+        TextField, Grid } from '@material-ui/core';
 import { Dialog, DialogTitle, DialogContent, DialogContentText, 
         DialogActions } from '@material-ui/core';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
@@ -61,7 +61,7 @@ class Plant extends React.Component {
   handleDelete = (e) => {
     e.preventDefault();
     this.props.handleAPIDelete(this.state.id);
-    this.setState({ open: false })
+    this.setState({ open: false });
   }
 
   // **  DONATE PLANT: handleDonate, use the same handleClose and handleOpen for the dialog
@@ -75,7 +75,7 @@ class Plant extends React.Component {
 
   handleDonate = (e) => {
     e.preventDefault();
-    this.props.handleAPIDonate(this.state.id)
+    this.props.handleAPIDonate(this.state.id);
     this.setState({ openDonate: false })
   }
 
@@ -129,7 +129,6 @@ class Plant extends React.Component {
         {!this.state.isEditing && 
           <Card className='plantcard' >
             <CardContent>
-              <Typography variant="body2" color="textSecondary">
                 <img src='../plants.png' alt='plants' height='150' width='150'/><br></br>
                 <p>Name: {this.state.name}</p>
                 <p>Sunlight: {this.state.sunlight}</p>
@@ -138,16 +137,15 @@ class Plant extends React.Component {
                 ? <> Owner: {this.state.owner} </>
                 : null
                 }
-              </Typography>
             </CardContent>
             <CardActions disableSpacing>
               {this.props.plant.user
               ? <>
-                <IconButton aria-label="edit">
-                  <EditOutlinedIcon onClick={this.handleEdit}/>
+                <IconButton aria-label="edit" onClick={this.handleEdit}>
+                  <EditOutlinedIcon />
                 </IconButton>
-                <IconButton aria-label="delete">
-                  <DeleteOutlineOutlinedIcon onClick={this.handleOpen}/>
+                <IconButton aria-label="delete" onClick={this.handleOpen}>
+                  <DeleteOutlineOutlinedIcon />
                 </IconButton>
                   <Button size='small' onClick={this.handleOpenDonate}>Donate</Button>
                 </>  

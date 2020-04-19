@@ -1,20 +1,20 @@
 import React from 'react';
 import '../Plant/Plant.css';
-import { Button, Card, CardContent, CardActions, IconButton, Typography} from '@material-ui/core';
+import { Button, Card, CardContent, CardActions, IconButton } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { Dialog, DialogTitle, DialogContent, DialogContentText, 
-  DialogActions } from '@material-ui/core';
+        DialogActions } from '@material-ui/core';
 
 
 class PlantAdopt extends React.Component {
 
   state = {
+    open: false,
     plantId: this.props.plant._id,
     name: this.props.plant.name,
     sunlight: this.props.plant.sunlight,
     water: this.props.plant.water,
-    user: '',
-    open: false
+    user: ''
   }
 
   handleOpen = () => {
@@ -34,22 +34,20 @@ class PlantAdopt extends React.Component {
       water: this.state.water,
       user: this.props.userId,
     }
-    this.props.handleAPIAdopt(adoptedPlant)
+    this.props.handleAPIAdopt(adoptedPlant);
     this.setState({ open: false })
   }
 
   render() {  
-  
+ 
     return (
       <div>
         <Card className='plantcard'>
           <CardContent>
-            <Typography variant="body2" color="textSecondary">
             <img src='../plogo.png' alt='plants' height='150' width='150'/><br></br>
-              <h3>Name: {this.state.name}</h3>
-              <h3>Sunlight: {this.state.sunlight}</h3>
-              <h3>Water: {this.state.water}</h3>
-            </Typography>
+            <p>Name: {this.state.name}</p>
+            <p>Sunlight: {this.state.sunlight}</p>
+            <p>Water: {this.state.water}</p>
           </CardContent>
 
           <CardActions disableSpacing>

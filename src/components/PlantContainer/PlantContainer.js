@@ -47,7 +47,7 @@ class PlantContainer extends React.Component {
     this.setState({ showModal: false })
   }
 
-  // API calls to perform CRUD & Donate feature
+  // API calls to perform CRUD, DONATE, & ADOPT features
   handleAPICreate = (plant) => {
     PlantAPI.create(plant)
     .then(res => {
@@ -106,8 +106,8 @@ class PlantContainer extends React.Component {
         {/* MODAL TO ADD NEW PLANT, DATA PASSED TO PLANTNEW COMPONENT */}
         <Container>
           <h3>My Plant Container</h3>
-          <IconButton style={{ color: "#00897b" }}>
-            <AddCircleOutlineIcon onClick={this.showModal}/>
+          <IconButton style={{ color: "#00897b" }} onClick={this.showModal}>
+            <AddCircleOutlineIcon />
           </IconButton>
 
           <Modal

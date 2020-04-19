@@ -29,21 +29,20 @@ class PlantAdoptContainer extends React.Component {
     plants: []
   }
 
-  handleAPIAdopt = (plant) => {
-    PlantAPI.adopt(plant)
+  handleAPIAdopt = (newPlant) => {
+    PlantAPI.adopt(newPlant)
     .then(res => {
-    let plants = this.state.plants.filter(plant => plant._id !== res._id)
-    this.setState({ plants })
+      let newPlants = this.state.plants.filter(plant => {
+        return plant._id !== newPlant._id
+      });
+      this.setState({ plants: newPlants })
     });
   }
-
 
   componentDidMount() {
     PlantAPI.index()
     .then(res => {
-      this.setState({ 
-        plants: res.data
-      })
+      this.setState({ plants: res.data })
     })
   }
 
