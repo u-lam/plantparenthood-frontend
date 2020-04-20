@@ -1,4 +1,5 @@
 import React from 'react';
+import './PlantAdoptContainer.css';
 import PlantAPI from '../../api/PlantAPI';
 import { withStyles } from '@material-ui/core/styles';
 import { Container }  from '@material-ui/core';
@@ -13,13 +14,7 @@ const styles = theme => ({
     flexDirection: 'row', 
     flexWrap: 'wrap', 
     justifyContent: 'center',
-  },
-  paper: {
-    backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-  },
+  }
 });
 
 class PlantAdoptContainer extends React.Component {
@@ -50,8 +45,8 @@ class PlantAdoptContainer extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div>
-        <h3>Plants to Adopt Container</h3>
+      <div className='pacontainer'>
+        {/* <h3>Plants to Adopt Container</h3> */}
         <Container className={classes.container}>
             {plants && plants.map(plant => {
               return (

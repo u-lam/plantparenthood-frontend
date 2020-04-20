@@ -22,15 +22,14 @@ function Header (props) {
     <nav>
     <div class="navigation" role="navigation">
       <div class="nav-bar">
-        <div class="mobile-icon">.</div>
         <ul>
-          <li><Link to={"/"}>Home</Link></li>
-          <li><Link to={"/about"}>About</Link></li>
+          <li><Link to={"/"}>Home ||</Link></li>
+          <li><Link to={"/about"}>About ||</Link></li>
 
           { (props.user) 
           ? <>
-            <li><Link to={"/plants"}>Adopt A Plant</Link></li>
-            <li><Link to={"/myplants"}>My Plants</Link></li>
+            <li><Link to={"/plants"}>Adopt A Plant ||</Link></li>
+            <li><Link to={"/myplants"}>My Plants ||</Link></li>
             <li>
             {/* <AccountCircleIcon className='icon' style={{ color: "#f2ed6f"}} fontSize="large" onClick={handleClick}/> */}
               <Avatar alt="Teddy Lam" src="../../profile.JPG" className='icon'  onClick={handleClick}/>
@@ -48,7 +47,7 @@ function Header (props) {
             </li>
             </>
           : <>
-            <li><Link to={"/login"}>Login</Link></li>
+            <li><Link to={"/login"}>Login ||</Link></li>
             <li><Link to={"/register"}>Signup</Link></li>
             </>
           }
