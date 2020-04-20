@@ -1,0 +1,15 @@
+.plantaddform {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 10px;
+  width: 70%;
+  height: 58%;
+}
+
+.addmodal {
+  background-color: #e3f6f5;
+  color: #151965;
+
+}

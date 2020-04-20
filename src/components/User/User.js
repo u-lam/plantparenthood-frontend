@@ -84,7 +84,7 @@ class User extends React.Component {
     })
   }
 
-
+  // Upon page load
   componentDidMount() {
     UserAPI.show(this.props.id)
     .then(res => {
@@ -116,63 +116,63 @@ class User extends React.Component {
                 </Typography>
             <Divider />
             <br></br>
-            <CardActions disableSpacing className={classes.root} boxShadow={3}>
-                  <IconButton onClick={this.handleEdit} size="small" style={{ color: "#639a67"}}>
-                    <EditOutlinedIcon /> 
-                  </IconButton>
-                  ||
-                  <IconButton onClick={this.handleOpen} size="small" style={{ color: "#f5b971"}}>
-                    <HighlightOffIcon /> 
-                  </IconButton>
-                </CardActions>
-                </CardContent>
+              <CardActions disableSpacing className={classes.root} boxShadow={3}>
+                <IconButton onClick={this.handleEdit} size="small" style={{ color: "#639a67"}}>
+                  <EditOutlinedIcon /> 
+                </IconButton>
+                ||
+                <IconButton onClick={this.handleOpen} size="small" style={{ color: "#f5b971"}}>
+                  <HighlightOffIcon /> 
+                </IconButton>
+              </CardActions>
+            </CardContent>
           </Card> 
         }
 
         {/* WHEN EDITING  */}
         {this.state.isEditing && 
         <Card className={classes.root} >
-        <CardContent>
-          <form onSubmit={this.handleSubmit}>
-            <Grid container spacing={1}>
-              <Grid item xs={12}>
-                <TextField
-                  autoComplete="firstName" variant="outlined"                 
-                  autoFocus type="text"            
-                  id="firstName" label="First name"          
-                      
-                  name="firstName" value={this.state.firstName}
-                  onChange={this.handleChange('firstName')}
-                />
+          <CardContent>
+            <form onSubmit={this.handleSubmit}>
+              <Grid container spacing={1}>
+                <Grid item xs={12}>
+                  <TextField
+                    autoComplete="firstName" variant="outlined"                 
+                    autoFocus type="text"            
+                    id="firstName" label="First name"          
+                        
+                    name="firstName" value={this.state.firstName}
+                    onChange={this.handleChange('firstName')}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    autoComplete="lastName" variant="outlined"                 
+                    autoFocus type="text"            
+                    id="lastName" label="Last name"            
+                        
+                    name="lastName" value={this.state.lastName}
+                    onChange={this.handleChange('lastName')}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    autoComplete="password" variant="outlined"                 
+                    autoFocus type='email'
+                    id="email" label="Email" 
+                
+                    name="email" value={this.state.email}
+                    onChange={this.handleChange('email')}           
+                  />
+                </Grid>
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  autoComplete="lastName" variant="outlined"                 
-                  autoFocus type="text"            
-                  id="lastName" label="Last name"            
-                      
-                  name="lastName" value={this.state.lastName}
-                  onChange={this.handleChange('lastName')}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  autoComplete="password" variant="outlined"                 
-                  autoFocus type='email'
-                  id="email" label="Email" 
-              
-                  name="email" value={this.state.email}
-                  onChange={this.handleChange('email')}           
-                />
-              </Grid>
-            </Grid>
-            <br></br>
-            <Button size='small' type='submit' value='submit'>Save</Button>
-            <Button size='small' onClick={this.handleEdit}>Cancel</Button> 
-          </form>
-        </CardContent>
-      </Card>
-      }
+              <br></br>
+              <Button size='small' type='submit' value='submit'>Save</Button>
+              <Button size='small' onClick={this.handleEdit}>Cancel</Button> 
+            </form>
+          </CardContent>
+        </Card>
+        }
 
         {/*****  DELETE DIALOG  *****/}
         <Dialog open={this.state.open} onClose={this.handleClose}>
@@ -191,7 +191,7 @@ class User extends React.Component {
             </Button>
           </DialogActions>
         </Dialog>
-      </div>
+        </div>
       </div>
     )
   }

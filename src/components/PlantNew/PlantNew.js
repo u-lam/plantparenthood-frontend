@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, Card, CardContent, TextField, Grid } from '@material-ui/core';
+import './PlantNew.css';
+import { Button, Card, CardContent, TextField, Typography, Grid } from '@material-ui/core';
 
 
 class PlantNew extends React.Component {
@@ -38,12 +39,18 @@ class PlantNew extends React.Component {
   render() {
     
     return (
-      <Card className='plantcard' >
-        <CardContent>
+      <div className='plantaddform'>
+      <Card  className='plantaddform'>
+        <CardContent className='addmodal'>
+          <Typography component="subtitle" variant="h5" >
+            Please fill out the details below to add a new plant!
+          </Typography>
+          <br></br>
+          <br></br>
           <form onSubmit={this.handleSubmit}>
             <Grid container spacing={1}>
               <Grid item xs={12}>
-                <TextField
+                <TextField fullWidth
                   autoComplete="name" variant="outlined"                 
                   autoFocus type="text"            
                   id="name" label="name"                  
@@ -52,7 +59,7 @@ class PlantNew extends React.Component {
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField
+                <TextField fullWidth
                   autoComplete="sunlight" variant="outlined"                 
                   autoFocus type='text'
                   id="sunlight" label="sunlight" 
@@ -61,7 +68,7 @@ class PlantNew extends React.Component {
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField
+                <TextField fullWidth
                   autoComplete="water" variant="outlined"                 
                   autoFocus type='text'
                   id="water" label="water" 
@@ -71,11 +78,12 @@ class PlantNew extends React.Component {
               </Grid>
             </Grid>
             <br></br>
-            <Button size='small' type='submit' value='submit' onClick={this.props.hideModal}>Add this plant!</Button>
-            <Button size='small' onClick={this.props.hideModal}>Cancel</Button> 
+            <Button size='large' type='submit' value='submit' onClick={this.props.hideModal}>Add this plant!</Button>
+            <Button size='large' onClick={this.props.hideModal}>Cancel</Button> 
           </form>
         </CardContent>
       </Card>
+      </div>
     )
   }
 }

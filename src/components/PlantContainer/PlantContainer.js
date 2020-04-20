@@ -13,6 +13,7 @@ const styles = theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    borderRadius: '20px'
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
@@ -26,11 +27,13 @@ const styles = theme => ({
     width: '80vw',
     display: 'flex', 
     flexDirection: 'row', 
+    overflow: 'hidden',
     flexWrap: 'wrap', 
     justifyContent: 'space-between'
   },
   container2: {
-    backgroundColor: 'lightblue', 
+    backgroundColor: '#fcfafa', 
+    // filter: 'blur(2px)',
     height: '80%', 
     width: '80vw',
     display: 'flex', 
@@ -126,7 +129,7 @@ class PlantContainer extends React.Component {
              
             </IconButton>
           </div>
-          <Modal
+          <Modal className={classes.modal}
             aria-labelledby="transition-modal-title"
             aria-describedby="transition-modal-description"
             className={classes.modal} open={this.state.showModal}
@@ -155,7 +158,7 @@ class PlantContainer extends React.Component {
                   }
                  </div>
               )
-          }) }
+            }) }
         </Container>
       </div>
     )
