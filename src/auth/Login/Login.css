@@ -1,7 +1,6 @@
 .login {
   background: url('/coverauth2.jpeg') no-repeat center fixed; 
   background-size: cover;
-  background-color: red;
   height: 95vh;
   width: 100vw;
   overflow: hidden;

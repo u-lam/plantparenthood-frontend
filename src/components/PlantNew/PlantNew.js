@@ -1,6 +1,6 @@
 import React from 'react';
 import './PlantNew.css';
-import { Button, Card, CardContent, TextField, Typography, Grid } from '@material-ui/core';
+import { Button, Card, CardHeader, CardContent, TextField, Typography, Grid } from '@material-ui/core';
 
 
 class PlantNew extends React.Component {
@@ -43,8 +43,9 @@ class PlantNew extends React.Component {
       <Card  className='plantaddform'>
         <CardContent className='addmodal'>
           <Typography component="subtitle" variant="h5" >
-            Please fill out the details below to add a new plant!
+            Please fill out the details below!
           </Typography>
+          <br></br>
           <br></br>
           <br></br>
           <form onSubmit={this.handleSubmit}>

@@ -1,0 +1,30 @@
+.addbtn {
+  font-size: 14px;
+  margin: 0 .5em;
+  border-radius: 2rem;
+  padding: 0.75em 1.5em;
+  cursor: pointer;
+  border: 1px solid #315b96;
+  letter-spacing: 1px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: blue; 
+}
+
+.addbtn:hover {
+  color: #315b96;
+}
+
+.container2 {
+  background-image: url("/blue.jpg") no-repeat center center fixed;
+  background-size: cover;
+  height: 90vh;
+  width: 100vw;
+  display: flex; 
+  flex-direction: row; 
+  justify-content: center;
+  overflow: hidden;
+}
+
+.iconbtn {
+  color: #00897b; 
+}

@@ -1,10 +1,9 @@
 import React from 'react';
-import User from '../User/User';
+import './PlantContainer.css';
 import PlantAPI from '../../api/PlantAPI';
 import Plant from '../Plant/Plant';
 import PlantNew from '../PlantNew/PlantNew';
 import { Container, IconButton, Modal, Backdrop, Fade }  from '@material-ui/core';
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { withStyles } from '@material-ui/core/styles';
 
 
@@ -22,9 +21,8 @@ const styles = theme => ({
     padding: theme.spacing(2, 4, 3),
   },
   container: {
-    backgroundColor: 'lightgray', 
     height: '100%', 
-    width: '80vw',
+    width: '100%',
     display: 'flex', 
     flexDirection: 'row', 
     overflow: 'hidden',
@@ -32,18 +30,13 @@ const styles = theme => ({
     justifyContent: 'space-between'
   },
   container2: {
-    backgroundColor: '#fcfafa', 
-    // filter: 'blur(2px)',
-    height: '80%', 
-    width: '80vw',
-    display: 'flex', 
-    flexDirection: 'row', 
-    flexWrap: 'wrap', 
-    justifyContent: 'center'
-  },
-  iconbtn: {
-    color: "#00897b" 
-  },
+  height: '90vh',
+  width: '100vw',
+  display: 'flex', 
+  flexDirection: 'row', 
+  flexWrap: 'wrap', 
+  justifyContent: 'center'
+  }
 });
 
 
@@ -121,12 +114,9 @@ class PlantContainer extends React.Component {
        <div>
         {/* MODAL TO ADD NEW PLANT, DATA PASSED TO PLANTNEW COMPONENT */}
         <Container className={classes.container}>
-          <h3>My Plant Container</h3>
           <div className={classes.addplant}>
             <IconButton className={classes.iconbtn} onClick={this.showModal}>
-              <h6>Add Plant</h6>
-              <AddCircleOutlineIcon />
-             
+              <button className='addbtn'>Add Plant</button>
             </IconButton>
           </div>
           <Modal className={classes.modal}
@@ -140,25 +130,26 @@ class PlantContainer extends React.Component {
               <PlantNew handleAPICreate={this.handleAPICreate} hideModal={this.hideModal}/>
             </Fade>
           </Modal>
-        </Container>
-        <br></br>
+        </Container> 
+     
 
         {/* PASSING DATA TO PLANT COMPONENT */}
         <Container className={classes.container2}>
-            {plants && plants.map(plant => {
-              return (
-                <div key={plant._id}>                 
-                  {this.props.id === plant.user
-                  ? <Plant plant={plant} firstName={this.props.firstName} userId={this.props.id}
-                    handleAPIUpdate={this.handleAPIUpdate}
-                    handleAPIDelete={this.handleAPIDelete}
-                    handleAPIDonate={this.handleAPIDonate}
-                    /> 
-                  : null
-                  }
-                 </div>
+          {plants && plants.map(plant => {
+            return (
+              <div key={plant._id}>                 
+                {this.props.id === plant.user
+                ? <Plant plant={plant} firstName={this.props.firstName} userId={this.props.id}
+                  handleAPIUpdate={this.handleAPIUpdate}
+                  handleAPIDelete={this.handleAPIDelete}
+                  handleAPIDonate={this.handleAPIDonate}
+                  /> 
+                : null
+                }
+                </div>
               )
-            }) }
+            }) 
+          }
         </Container>
       </div>
     )
