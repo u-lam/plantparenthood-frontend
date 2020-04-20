@@ -33,7 +33,7 @@ const deleteUser = (id) => {
     .catch(err => console.log(err))
 }
 
-// no need to create an API call to logout because with JWT, the header will be removed and thus unauthenticate user
+// no need to create an API call to logout because with JWT, the header will be removed and thus inauthenticate user
 
 export default {
   register,

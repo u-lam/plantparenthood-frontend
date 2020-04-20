@@ -1,0 +1,16 @@
+.root {
+  background-color: azure;
+  background: url('/cactus.jpeg') no-repeat center fixed; 
+  background-size: cover;
+  height: 90vh;
+  width: 100vw;
+  overflow: hidden;
+  filter: blur(0.3px)
+}
+
+.profilecard {
+ display: flex;
+ justify-content: center; 
+ position: relative;
+ top: 50px;
+}

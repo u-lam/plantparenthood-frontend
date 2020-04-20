@@ -1,7 +1,8 @@
 import React from 'react';
+import './User.css';
 import { withStyles } from '@material-ui/core/styles';
 import { Avatar, Button, Card, CardContent, CardActions, IconButton,
-          TextField, Grid } from '@material-ui/core';
+          Divider, TextField, Grid, Typography } from '@material-ui/core';
 import { Dialog, DialogTitle, DialogContent, 
           DialogContentText, DialogActions } from '@material-ui/core';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
@@ -12,13 +13,17 @@ import UserAPI from '../../api/UserAPI';
 const styles = theme => ({
   root: {
     display: 'flex',
+    alignItems: 'center',
     justifyContent: 'center',
-    position: 'relative',
+    width: '35%',
     top: 50,
+    margin: '0 auto',
+    fontFamily: 'monospace'
   },
   large: {
     width: 200,
     height: 200,
+    margin: '0 auto',
   },
 })
 
@@ -62,6 +67,7 @@ class User extends React.Component {
     this.setState({ isEditing: !this.state.isEditing })
   }
 
+
   // DELETE USER PROFILE
   handleOpen = () => {
     this.setState({ open: true })
@@ -79,7 +85,8 @@ class User extends React.Component {
     })
   }
 
-
+  
+  // Upon page load
   componentDidMount() {
     UserAPI.show(this.props.id)
     .then(res => {
@@ -95,80 +102,86 @@ class User extends React.Component {
     const { classes } = this.props
 
     return (
-      <div className={classes.root}>
-        <div></div>
+      <div className='root'>
+        <div className='profilecard'>
         <br></br>
         {/* WHEN NOT EDITING */}
         {!this.state.isEditing && 
           <Card className={classes.root} >
-               <CardActions disableSpacing>
-                  <IconButton onClick={this.handleEdit}>
-                    <EditOutlinedIcon />Edit {this.props.firstName}
-                  </IconButton>
-                  <IconButton onClick={this.handleOpen}>
-                    <HighlightOffIcon  />Delete {this.props.firstname}
-                  </IconButton>
-                </CardActions>
             <CardContent>
                 <Avatar alt="Teddy Lam" src="../../profile.JPG" className={classes.large}/><br></br>
-                  <p>First Name: {this.state.firstName}</p>
-                  <p>Last Name: {this.state.lastName}</p>
-                  <p>Registered Email: {this.state.email}</p>
+                <Typography gutterBottom variant="body1" component="h3" >
+                    Name: {this.state.firstName} {this.state.lastName}
+                </Typography>
+                <Typography gutterBottom variant="body1" component="h3" >
+                    Email: {this.state.email}
+                </Typography>
+            <Divider />
+            <br></br>
+              <CardActions disableSpacing className={classes.root}>
+                <IconButton onClick={this.handleEdit} size="small" style={{ color: "#639a67"}}>
+                  <EditOutlinedIcon /> 
+                </IconButton>
+                ||
+                <IconButton onClick={this.handleOpen} size="small" style={{ color: "#f5b971"}}>
+                  <HighlightOffIcon /> 
+                </IconButton>
+              </CardActions>
             </CardContent>
           </Card> 
         }
 
         {/* WHEN EDITING  */}
         {this.state.isEditing && 
-        <Card  >
-        <CardContent>
-          <form onSubmit={this.handleSubmit}>
-            <Grid container spacing={1}>
-              <Grid item xs={12}>
-                <TextField
-                  autoComplete="firstName" variant="outlined"                 
-                  autoFocus type="text"            
-                  id="firstName" label="First name"          
-                      
-                  name="firstName" value={this.state.firstName}
-                  onChange={this.handleChange('firstName')}
-                />
+        <Card className={classes.root} >
+          <CardContent>
+            <form onSubmit={this.handleSubmit}>
+              <Grid container spacing={1}>
+                <Grid item xs={12}>
+                  <TextField
+                    autoComplete="firstName" variant="outlined"                 
+                    autoFocus type="text"            
+                    id="firstName" label="First name"          
+                        
+                    name="firstName" value={this.state.firstName}
+                    onChange={this.handleChange('firstName')}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    autoComplete="lastName" variant="outlined"                 
+                    autoFocus type="text"            
+                    id="lastName" label="Last name"            
+                        
+                    name="lastName" value={this.state.lastName}
+                    onChange={this.handleChange('lastName')}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    autoComplete="password" variant="outlined"                 
+                    autoFocus type='email'
+                    id="email" label="Email" 
+                
+                    name="email" value={this.state.email}
+                    onChange={this.handleChange('email')}           
+                  />
+                </Grid>
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  autoComplete="lastName" variant="outlined"                 
-                  autoFocus type="text"            
-                  id="lastName" label="Last name"            
-                      
-                  name="lastName" value={this.state.lastName}
-                  onChange={this.handleChange('lastName')}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  autoComplete="password" variant="outlined"                 
-                  autoFocus type='email'
-                  id="email" label="Email" 
-              
-                  name="email" value={this.state.email}
-                  onChange={this.handleChange('email')}           
-                />
-              </Grid>
-            </Grid>
-            <br></br>
-            <Button size='small' type='submit' value='submit'>Save</Button>
-            <Button size='small' onClick={this.handleEdit}>Cancel</Button> 
-          </form>
-        </CardContent>
-      </Card>
-      }
+              <br></br>
+              <Button size='small' type='submit' value='submit'>Save</Button>
+              <Button size='small' onClick={this.handleEdit}>Cancel</Button> 
+            </form>
+          </CardContent>
+        </Card>
+        }
 
         {/*****  DELETE DIALOG  *****/}
         <Dialog open={this.state.open} onClose={this.handleClose}>
           <DialogTitle id="form-dialog-title">Delete</DialogTitle>
           <DialogContent>
             <DialogContentText>
-              Are you sure you want to delete <strong>{this.state.name}</strong>?
+              Are you sure you want to delete <strong>{this.state.firstName}</strong>?
             </DialogContentText>
           </DialogContent>
           <DialogActions>
@@ -180,6 +193,7 @@ class User extends React.Component {
             </Button>
           </DialogActions>
         </Dialog>
+        </div>
       </div>
     )
   }

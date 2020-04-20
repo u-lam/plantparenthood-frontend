@@ -1,13 +1,14 @@
-.login {
+.register {
   background: url('/coverauth2.jpeg') no-repeat center fixed; 
   background-size: cover;
+  background-color: lightgoldenrodyellow;
   height: 95vh;
   width: 100vw;
   overflow: hidden;
   filter: blur(0.3px)
 }
 
-.loginform {
+.registerform {
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0, 0.2); /* Black w/opacity/see-through */
   color: white;
@@ -19,7 +20,7 @@
   transform: translate(-50%, -50%);
   z-index: 3;
   width: 45%;
-  height: 65%;
+  height: 75%;
   border-radius: 20px;
   padding: 10px;
   text-align: center;

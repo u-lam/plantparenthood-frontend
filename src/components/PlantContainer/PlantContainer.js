@@ -1,9 +1,9 @@
 import React from 'react';
+import './PlantContainer.css';
 import PlantAPI from '../../api/PlantAPI';
 import Plant from '../Plant/Plant';
 import PlantNew from '../PlantNew/PlantNew';
 import { Container, IconButton, Modal, Backdrop, Fade }  from '@material-ui/core';
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { withStyles } from '@material-ui/core/styles';
 
 
@@ -12,6 +12,7 @@ const styles = theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    borderRadius: '20px'
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
@@ -20,9 +21,17 @@ const styles = theme => ({
     padding: theme.spacing(2, 4, 3),
   },
   container: {
-    backgroundColor: '#cfe8fc', 
     height: '100%', 
-    width: '80vw',
+    width: '100%',
+    display: 'flex', 
+    flexDirection: 'row', 
+    overflow: 'hidden',
+    flexWrap: 'wrap', 
+    justifyContent: 'space-between'
+  },
+  container2: {
+    height: '90vh',
+    width: '100%',
     display: 'flex', 
     flexDirection: 'row', 
     flexWrap: 'wrap', 
@@ -46,6 +55,7 @@ class PlantContainer extends React.Component {
   hideModal = () => {
     this.setState({ showModal: false })
   }
+
 
   // API calls to perform CRUD, DONATE, & ADOPT features
   handleAPICreate = (plant) => {
@@ -100,20 +110,19 @@ class PlantContainer extends React.Component {
     let plants = this.state.plants;
     const { classes } = this.props;
 
-
     return (
-       <div>
+       <div className='plantcontainer'>
         {/* MODAL TO ADD NEW PLANT, DATA PASSED TO PLANTNEW COMPONENT */}
-        <Container>
-          <h3>My Plant Container</h3>
-          <IconButton style={{ color: "#00897b" }} onClick={this.showModal}>
-            <AddCircleOutlineIcon />
-          </IconButton>
-
-          <Modal
+        <Container className={classes.container}>
+          <div className={classes.addplant}>
+            <IconButton className={classes.iconbtn} onClick={this.showModal}>
+              <button className='addbtn'>Add Plant</button>
+            </IconButton>
+          </div>
+          <Modal className={classes.modal}
             aria-labelledby="transition-modal-title"
             aria-describedby="transition-modal-description"
-            className={classes.modal} open={this.state.showModal}
+            open={this.state.showModal}
             onClose={this.hideModal} closeAfterTransition
             BackdropComponent={Backdrop} BackdropProps={{ timeout: 500  }}
             >
@@ -121,25 +130,25 @@ class PlantContainer extends React.Component {
               <PlantNew handleAPICreate={this.handleAPICreate} hideModal={this.hideModal}/>
             </Fade>
           </Modal>
-        </Container>
-        <br></br>
-
+        </Container> 
+     
         {/* PASSING DATA TO PLANT COMPONENT */}
-        <Container className={classes.container}>
-            {plants && plants.map(plant => {
-              return (
-                <div key={plant._id}>                 
-                  {this.props.id === plant.user
-                  ? <Plant plant={plant} firstName={this.props.firstName} userId={this.props.id}
-                    handleAPIUpdate={this.handleAPIUpdate}
-                    handleAPIDelete={this.handleAPIDelete}
-                    handleAPIDonate={this.handleAPIDonate}
-                    /> 
-                  : null
-                  }
-                 </div>
+        <Container className={classes.container2}>
+          {plants && plants.map(plant => {
+            return (
+              <div key={plant._id}>                 
+                {this.props.id === plant.user
+                ? <Plant plant={plant} firstName={this.props.firstName} userId={this.props.id}
+                  handleAPIUpdate={this.handleAPIUpdate}
+                  handleAPIDelete={this.handleAPIDelete}
+                  handleAPIDonate={this.handleAPIDonate}
+                  /> 
+                : null
+                }
+                </div>
               )
-          }) }
+            }) 
+          }
         </Container>
       </div>
     )

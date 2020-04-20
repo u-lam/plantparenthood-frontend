@@ -1,11 +1,12 @@
 import React from 'react';
 import './Plant.css';
 import { Button, Card, CardContent, CardActions, IconButton,
-        TextField, Grid } from '@material-ui/core';
+        Divider, TextField, Typography, Grid } from '@material-ui/core';
 import { Dialog, DialogTitle, DialogContent, DialogContentText, 
         DialogActions } from '@material-ui/core';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
+
 
 class Plant extends React.Component {
 
@@ -85,7 +86,7 @@ class Plant extends React.Component {
       <div>
         {/*****  WHEN EDITING  *****/}
         {this.state.isEditing && 
-          <Card className='plantcard' >
+          <Card className='planteditform' >
             <CardContent>
               <form onSubmit={this.handleSubmit}>
                 <Grid container spacing={1}>
@@ -129,25 +130,41 @@ class Plant extends React.Component {
         {!this.state.isEditing && 
           <Card className='plantcard' >
             <CardContent>
-                <img src='../plants.png' alt='plants' height='150' width='150'/><br></br>
-                <p>Name: {this.state.name}</p>
-                <p>Sunlight: {this.state.sunlight}</p>
-                <p>Water: {this.state.water}</p>
-                {this.props.plant.user 
-                ? <> Owner: {this.state.owner} </>
-                : null
-                }
+              <div>
+                <img src='../pointy.jpeg' alt='plants'/><br></br>
+              </div>
+              <br></br>
+              <Typography gutterBottom variant="h6" component="h6" >
+                Name: {this.state.name} 
+              </Typography>
+              <Typography gutterBottom variant="body2" component="p" color="textSecondary">
+                Daily Sunlight: {this.state.sunlight} 
+              </Typography>
+              <Typography gutterBottom variant="body2" component="p" color="textSecondary">
+                Water needs: {this.state.water} 
+              </Typography>
+              {this.props.plant.user 
+              ? <Typography gutterBottom variant="body2" component="p" color="textSecondary">
+                  Owner: {this.state.owner}
+                </Typography>
+              : null
+              }
             </CardContent>
-            <CardActions disableSpacing>
+            <Divider />
+            <br></br>
+
+            <CardActions disableSpacing className='cardaction'>
               {this.props.plant.user
               ? <>
-                <IconButton aria-label="edit" onClick={this.handleEdit}>
+                <IconButton aria-label="edit" onClick={this.handleEdit} size="small" style={{ color: "#639a67"}}>
                   <EditOutlinedIcon />
                 </IconButton>
-                <IconButton aria-label="delete" onClick={this.handleOpen}>
+                || 
+                <IconButton aria-label="delete" onClick={this.handleOpen} size="small" style={{ color: "#f5b971"}}>
                   <DeleteOutlineOutlinedIcon />
                 </IconButton>
-                  <Button size='small' onClick={this.handleOpenDonate}>Donate</Button>
+                ||
+                  <Button size='small' onClick={this.handleOpenDonate} style={{ color: "#3282b8" }}>Donate</Button>
                 </>  
               : <Button size='small'>Adopt Me!</Button>
               }
