@@ -52,7 +52,7 @@ class PlantNew extends React.Component {
                   <TextField fullWidth
                     autoComplete="name" variant="outlined"                 
                     autoFocus type="text"            
-                    id="name" label="name"                  
+                    id="name" label="Name"                  
                     name="name" value={this.state.name}
                     onChange={this.handleChange('name')}
                   />
@@ -61,7 +61,7 @@ class PlantNew extends React.Component {
                   <TextField fullWidth
                     autoComplete="sunlight" variant="outlined"                 
                     autoFocus type='text'
-                    id="sunlight" label="sunlight" 
+                    id="sunlight" label="Daily sunlight" 
                     name="sunlight" value={this.state.sunlight}
                     onChange={this.handleChange('sunlight')}           
                   />
@@ -70,7 +70,7 @@ class PlantNew extends React.Component {
                   <TextField fullWidth
                     autoComplete="water" variant="outlined"                 
                     autoFocus type='text'
-                    id="water" label="water" 
+                    id="water" label="Water" 
                     name="water" value={this.state.water}
                     onChange={this.handleChange('water')}           
                   />
