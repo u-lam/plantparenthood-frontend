@@ -47,7 +47,7 @@ class About extends React.Component {
         {/* WHEN NOT EDITING */}
           <Card className={classes.root} >
             <CardContent>
-                <Avatar alt="Uyen Lam" src="../../uyen.JPG" className={classes.large}/><br></br>
+                <Avatar alt="Uyen Lam" src="../../myprofile.jpg" className={classes.large}/><br></br>
                 <Typography gutterBottom variant="body1" component="h2" >
                     Name: Uyen Lam
                 </Typography>

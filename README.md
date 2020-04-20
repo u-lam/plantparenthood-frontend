@@ -1,68 +1,62 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Plant Parenthood :cactus:
 
-## Available Scripts
+### Intro
+  Houseplants are awesome! They are decorative, require little attention, and can even help purify the air around you. But what happens when you have to make a sudden move and can’t bring all your plants with you? Or when you downsize? Or if you just want to switch it up with different types of plants? 
 
-In the project directory, you can run:
+  ***Plant Parenthood*** is the place for that! Donate or trade your plant babies here! 
 
-### `npm start`
+*I can’t take credit for this pun. If anyone knows the original source, please let me know!*
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### User Story
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+* Upon landing on the home page, a user can sign up with his/her name and email address. 
+* User can use his/her credentials to log in.
+* Once logged in, user can:
+  * View/Edit/Delete profile (CRUD on user)
+  * Create/Edit/Delete his/her plant(s) (CRUD on plant)
+  * Donate a plant
+  * View a listing of all other plants available for trade from other users
 
-### `npm test`
+### MVP
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  **Backend** 
 
-### `npm run build`
+    1. Plant database
+    2. Error handling
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  **Frontend**
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+    1. Home, About, User Profile, and Plant index, Login, and Signup pages with validation
+    2. Responsive design
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  **Both**
 
-### `npm run eject`
+    1. User auth
+    2. CRUD on User and Plant models
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Future features
+  * Include a functional search bar.
+  * Execute trades with other users.
+  * Once a trade request has been made, the other plant owner would get a message alert to either decline or accept the trade. 
+  * Expand the categories to include flowers, vegetables, plant pottery or other planting equipment.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### ERD Model 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+ <img src="public/ERD.png">
+ 
+### Wireframes
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+ <img src="public/Home.png">
 
-## Learn More
+ <img src="public/About.png">
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+ <img src="public/Login.png">
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+ <img src="public/Signup.png">
 
-### Code Splitting
+ <img src="public/Myplants.png">
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+ <img src="public/Plants.png">
 
-### Analyzing the Bundle Size
+ <img src="public/User.png">
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
