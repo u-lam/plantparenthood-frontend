@@ -1,7 +1,7 @@
 import React from 'react';
 import './Plant.css';
 import { Button, Card, CardContent, CardActions, IconButton,
-        Divider, TextField, Typography, Grid, CardHeader } from '@material-ui/core';
+        Divider, TextField, Typography, Grid } from '@material-ui/core';
 import { Dialog, DialogTitle, DialogContent, DialogContentText, 
         DialogActions } from '@material-ui/core';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
@@ -130,9 +130,8 @@ class Plant extends React.Component {
         {!this.state.isEditing && 
           <Card className='plantcard' >
             <CardContent>
-              {/* do if statements to match plant name with img name? */}
               <div>
-              <img src='../pointy.jpeg' alt='plants'/><br></br>
+                <img src='../pointy.jpeg' alt='plants'/><br></br>
               </div>
               <br></br>
               <Typography gutterBottom variant="h6" component="h6" >

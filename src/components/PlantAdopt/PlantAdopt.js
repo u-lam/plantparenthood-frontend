@@ -69,25 +69,25 @@ class PlantAdopt extends React.Component {
           </CardActions>
         </Card>        
 
-      {/*****  DONATE DIALOG  *****/}
-      <Dialog open={this.state.open} onClose={this.handleClose}>
-        <DialogTitle id="form-dialog-title">Adopt</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Are you sure you want to adopt <strong>{this.state.name}</strong>?
-          </DialogContentText>
-        </DialogContent>
+        {/*****  DONATE DIALOG  *****/}
+        <Dialog open={this.state.open} onClose={this.handleClose}>
+          <DialogTitle id="form-dialog-title">Adopt</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Are you sure you want to adopt <strong>{this.state.name}</strong>?
+            </DialogContentText>
+          </DialogContent>
 
-        <DialogActions>
-          <Button onClick={this.handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={this.handleSubmit} color="primary">
-            Yes, I'm sure.
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
+          <DialogActions>
+            <Button onClick={this.handleClose} color="primary">
+              Cancel
+            </Button>
+            <Button onClick={this.handleSubmit} color="primary">
+              Yes, I'm sure.
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
     )
   }
 }

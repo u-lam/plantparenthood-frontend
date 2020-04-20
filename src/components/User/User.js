@@ -67,6 +67,7 @@ class User extends React.Component {
     this.setState({ isEditing: !this.state.isEditing })
   }
 
+
   // DELETE USER PROFILE
   handleOpen = () => {
     this.setState({ open: true })
@@ -84,6 +85,7 @@ class User extends React.Component {
     })
   }
 
+  
   // Upon page load
   componentDidMount() {
     UserAPI.show(this.props.id)
@@ -108,15 +110,15 @@ class User extends React.Component {
           <Card className={classes.root} >
             <CardContent>
                 <Avatar alt="Teddy Lam" src="../../profile.JPG" className={classes.large}/><br></br>
-                <Typography gutterBottom variant="body" component="h3" >
+                <Typography gutterBottom variant="body1" component="h3" >
                     Name: {this.state.firstName} {this.state.lastName}
                 </Typography>
-                <Typography gutterBottom variant="body" component="h3" >
+                <Typography gutterBottom variant="body1" component="h3" >
                     Email: {this.state.email}
                 </Typography>
             <Divider />
             <br></br>
-              <CardActions disableSpacing className={classes.root} boxShadow={3}>
+              <CardActions disableSpacing className={classes.root}>
                 <IconButton onClick={this.handleEdit} size="small" style={{ color: "#639a67"}}>
                   <EditOutlinedIcon /> 
                 </IconButton>

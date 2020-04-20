@@ -24,8 +24,6 @@ img {
   height: 250px;
   width: 250px;
   border-radius: 8pt;
-
-  /* transition: 0.2s ease-in-out; */
 }
 
 img:hover {
@@ -38,7 +36,6 @@ img:hover {
 
 .expansiondetails {
   display: block;
-  /* flex-direction: ; */
 }
 
 

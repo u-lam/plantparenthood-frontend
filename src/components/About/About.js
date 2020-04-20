@@ -3,8 +3,6 @@ import './About.css';
 import { withStyles } from '@material-ui/core/styles';
 import { Avatar, Card, CardContent, CardActions, IconButton,
           Divider, Typography } from '@material-ui/core';
-import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
-import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
@@ -50,15 +48,16 @@ class About extends React.Component {
           <Card className={classes.root} >
             <CardContent>
                 <Avatar alt="Uyen Lam" src="../../uyen.JPG" className={classes.large}/><br></br>
-                <Typography gutterBottom variant="body" component="h2" >
+                <Typography gutterBottom variant="body1" component="h2" >
                     Name: Uyen Lam
                 </Typography>
-                <Typography gutterBottom variant="body" component="h3" >
+                <Typography gutterBottom variant="body1" component="h3" >
                     I. Love. Plants. 
                 </Typography>
-            <Divider />
-            <br></br>
-              <CardActions disableSpacing className={classes.root} boxShadow={3}>
+              <Divider />
+              <br></br>
+
+              <CardActions disableSpacing className={classes.root}>
                 <IconButton size="small" style={{ color: "#0779e4"}}>
                   <LinkedInIcon /> 
                 </IconButton>
@@ -80,4 +79,3 @@ class About extends React.Component {
 }
 
 export default withStyles(styles)(About);
-

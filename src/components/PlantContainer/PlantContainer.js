@@ -56,6 +56,7 @@ class PlantContainer extends React.Component {
     this.setState({ showModal: false })
   }
 
+
   // API calls to perform CRUD, DONATE, & ADOPT features
   handleAPICreate = (plant) => {
     PlantAPI.create(plant)
@@ -109,7 +110,6 @@ class PlantContainer extends React.Component {
     let plants = this.state.plants;
     const { classes } = this.props;
 
-
     return (
        <div className='plantcontainer'>
         {/* MODAL TO ADD NEW PLANT, DATA PASSED TO PLANTNEW COMPONENT */}
@@ -122,7 +122,7 @@ class PlantContainer extends React.Component {
           <Modal className={classes.modal}
             aria-labelledby="transition-modal-title"
             aria-describedby="transition-modal-description"
-            className={classes.modal} open={this.state.showModal}
+            open={this.state.showModal}
             onClose={this.hideModal} closeAfterTransition
             BackdropComponent={Backdrop} BackdropProps={{ timeout: 500  }}
             >
@@ -132,7 +132,6 @@ class PlantContainer extends React.Component {
           </Modal>
         </Container> 
      
-
         {/* PASSING DATA TO PLANT COMPONENT */}
         <Container className={classes.container2}>
           {plants && plants.map(plant => {

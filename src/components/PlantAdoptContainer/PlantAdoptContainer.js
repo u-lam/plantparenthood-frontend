@@ -59,7 +59,8 @@ class PlantAdoptContainer extends React.Component {
                   }
                 </div>
               )
-          }) }
+            }) 
+          }
         </Container>
       </div>
     )

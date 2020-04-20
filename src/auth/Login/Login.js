@@ -5,6 +5,7 @@ import { Avatar, Button, CssBaseline, TextField,
 import LocalFloristOutlinedIcon from '@material-ui/icons/LocalFloristOutlined';
 import { withStyles } from '@material-ui/core/styles';
 
+
 const styles = theme => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -40,7 +41,6 @@ class Login extends React.Component {
     })  
   };
 
-
   handleSubmit = (e) => {
     e.preventDefault();
     let user = {
@@ -56,48 +56,51 @@ class Login extends React.Component {
     return (
       <div className='login'>
         <div className='loginform'>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LocalFloristOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Log In
-          </Typography>
-          <br></br>
-          <form className={classes.form} onSubmit={this.handleSubmit}>
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <TextField
-                  autoComplete="email" variant="outlined"                 
-                  fullWidth autoFocus required                  
-                  id="email" label="Email Address"                  
-                  name="email" value={this.state.email}
-                  onChange={this.handleChange('email')}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  autoComplete="current-password" variant="outlined"                 
-                  fullWidth autoFocus required
-                  id="password" label="Password" type="password"
-                  name="password" value={this.state.password}
-                  onChange={this.handleChange('password')}             
-                />
-              </Grid>
-            </Grid>
-            <Button
-              type="submit" variant="contained"
-              fullWidth color="primary"
-              className={classes.submit}
-            >
-              Log In
-            </Button>
-          </form>
+          <Container component="main" maxWidth="xs">
+            <CssBaseline />
+              <div className={classes.paper}>
+              <Avatar className={classes.avatar}>
+                <LocalFloristOutlinedIcon />
+              </Avatar>
+              <Typography component="h1" variant="h5">
+                Log In
+              </Typography>
+              <br></br>
+
+              <form className={classes.form} onSubmit={this.handleSubmit}>
+                <Grid container spacing={2}>
+                  <Grid item xs={12}>
+                    <TextField
+                      autoComplete="email" variant="outlined"                 
+                      fullWidth autoFocus required                  
+                      id="email" label="Email Address"                  
+                      name="email" value={this.state.email}
+                      onChange={this.handleChange('email')}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      autoComplete="current-password" variant="outlined"                 
+                      fullWidth autoFocus required
+                      id="password" label="Password" type="password"
+                      name="password" value={this.state.password}
+                      onChange={this.handleChange('password')}             
+                    />
+                  </Grid>
+                </Grid>
+
+                <Button
+                  type="submit" variant="contained"
+                  fullWidth color="primary"
+                  className={classes.submit}
+                >
+                  Log In
+                </Button>
+
+              </form>
+            </div>
+          </Container>
         </div>
-      </Container>
-      </div>
       </div>
     )
   }
