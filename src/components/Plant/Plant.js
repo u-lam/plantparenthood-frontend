@@ -130,7 +130,7 @@ class Plant extends React.Component {
         {!this.state.isEditing && 
           <Card className='plantcard' >
             <CardContent>
-              {/* do if statements so match plant name with img name? */}
+              {/* do if statements to match plant name with img name? */}
               <div>
               <img src='../pointy.jpeg' alt='plants'/><br></br>
               </div>
