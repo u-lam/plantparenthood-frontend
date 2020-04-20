@@ -20,14 +20,17 @@ Link: Coming soon!
 ### MVP
 
   **Backend** 
+
     1. Plant database
     2. Error handling
 
   **Frontend**
+
     1. Home, About, User Profile, and Plant index, Login, and Signup pages with validation
     2. Responsive design
 
   **Fullstack**
+  
     1. User auth
     2. CRUD on User and Plant models
 
@@ -52,7 +55,5 @@ Link: Coming soon!
  <img src="public/Signup.png">
 
  <img src="public/Myplants.png">
-
- <img src="public/Plants.png">
 
  <img src="public/User.png">
