@@ -30,12 +30,12 @@ const styles = theme => ({
     justifyContent: 'space-between'
   },
   container2: {
-  height: '90vh',
-  width: '100vw',
-  display: 'flex', 
-  flexDirection: 'row', 
-  flexWrap: 'wrap', 
-  justifyContent: 'center'
+    height: '90vh',
+    width: '100%',
+    display: 'flex', 
+    flexDirection: 'row', 
+    flexWrap: 'wrap', 
+    justifyContent: 'center'
   }
 });
 
@@ -111,7 +111,7 @@ class PlantContainer extends React.Component {
 
 
     return (
-       <div>
+       <div className='plantcontainer'>
         {/* MODAL TO ADD NEW PLANT, DATA PASSED TO PLANTNEW COMPONENT */}
         <Container className={classes.container}>
           <div className={classes.addplant}>

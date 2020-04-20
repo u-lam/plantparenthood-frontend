@@ -1,3 +1,10 @@
+.plantcontainer {
+  background-size: cover;
+  background-color: #fffdf9;
+  height: auto;
+  width: 100vw;
+}
+
 .plantaddform {
   display: flex;
   justify-content: center;
@@ -9,7 +16,5 @@
 }
 
 .addmodal {
-  /* background-color: #e3f6f5; */
   color: #315b96;
-
 }
