@@ -23,3 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 package-lock.json
 package.json
+
+# extra file
+auth/Register/Signup.js

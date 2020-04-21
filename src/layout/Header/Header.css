@@ -1,0 +1,115 @@
+* {
+	margin:0;
+	padding:0;
+}  
+
+.nav-bar {
+	width: 100%;
+	position: relative;
+	height: auto;
+	z-index: 999;
+	top: 0;
+	font-size: 20px;
+  background-color: #84a9ac;
+}
+.nav-bar li:last-child {
+  margin-right: 60px;
+
+}
+
+.nav-bar .icon {
+  position: relative;
+  top: 10px;
+}
+
+a {
+	text-decoration: none;
+	color:inherit;
+}
+
+nav ul {
+	overflow: hidden;
+	text-align:right;
+	padding: 3px;
+	margin-left: 0;
+	width: 100%;
+	transition: max-height 0.4s;
+}
+
+nav ul li {
+  display: inline-block;
+	text-transform: uppercase;
+	font-family: monospace, "Montserrat", "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-weight: 300;
+	padding: 10px 15px;
+	letter-spacing: 1px;
+	color: white;
+}
+
+ nav a:hover {
+	color: #70B8FF;
+}
+/* Mobile navigation */
+.mobile-icon {
+	width: 100%;
+	text-align: right;
+	box-sizing: border-box;
+	cursor: pointer;
+	color: #fff;
+	display: none;
+	font-size: 20px;
+	font-family: bold;
+	margin: 2% 2%;
+	position: relative;
+	padding-left: 1.25em;
+}
+/* style of mobile icron */
+.mobile-icon:before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0.2em;
+	width: 1.2em;
+	height: 0.16em;
+	background: white;
+	box-shadow: 0 0.35em 0 0 white, 0 0.7em 0 0 white;
+}     
+/* end */
+
+@media screen and (max-width: 943px) {
+		.mobile-icon {
+			display: block;
+		}
+
+		nav ul {
+			max-height: 0px;
+			padding: 0px;
+		}
+
+		.showing {
+			max-height: 20em;
+			padding-bottom: 10px;
+			font-size: 18px;
+		}
+
+		.nav-bar {
+			width:100%;
+			background-color: #64b2cd;
+		}
+
+		nav ul li {
+			box-sizing: border-box;
+			width: 100%;
+			text-align: center;
+		}
+		
+		nav ul li:hover {
+			background-color: #fff;
+			width: 100%;
+        color: #70B8FF;
+		}
+
+		.nav-bar {
+			display: block;
+		}
+} 

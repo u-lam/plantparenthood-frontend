@@ -1,0 +1,26 @@
+.login {
+  background: url('/coverauth2.jpeg') no-repeat center fixed; 
+  background-size: cover;
+  height: 95vh;
+  width: 100vw;
+  overflow: hidden;
+  filter: blur(0.3px)
+}
+
+.loginform {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.2); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  border: 3px solid #f1f1f1;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  width: 45%;
+  height: 65%;
+  border-radius: 20px;
+  padding: 10px;
+  text-align: center;
+}

@@ -4,10 +4,11 @@ import './Home.css';
 function Home() {
   return (
     <div className="home">
+      <br></br>
+      <div className='intro'>
       <h1>Plant Parenthood</h1>
-      <br></br>
-      <br></br>
-      <img style={{maxHeight: "400px"}} src='../../plants.gif' ></img>
+      <h4>...where neglect is acceptable and encouraged</h4>
+      </div>
     </div>
   );
 };
