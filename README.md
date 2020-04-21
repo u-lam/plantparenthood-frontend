@@ -62,4 +62,6 @@ Link: Coming soon!
 
  <img src="public/Myplants.png">
 
+ <img src="public/plants.png">
+
  <img src="public/User.png">
