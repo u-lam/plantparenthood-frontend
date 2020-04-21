@@ -52,7 +52,7 @@ class PlantAdopt extends React.Component {
               Name: {this.state.name} 
             </Typography>
             <Typography gutterBottom variant="body2" component="p" color="textSecondary">
-              Daily Sunlight: {this.state.sunlight} 
+              Daily sunlight: {this.state.sunlight} 
             </Typography>
             <Typography gutterBottom variant="body2" component="p" color="textSecondary">
               Water needs: {this.state.water} 

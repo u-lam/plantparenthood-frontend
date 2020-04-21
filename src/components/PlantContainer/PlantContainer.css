@@ -10,18 +10,12 @@
   color: blue; 
 }
 
-.addbtn:hover {
-  color: #315b96;
+.addplant {
+  text-align: center;
 }
 
-.container2 {
-  background-size: cover;
-  height: auto;
-  width: 100vw;
-  display: flex; 
-  flex-direction: row; 
-  justify-content: center;
-  overflow: hidden;
+.addbtn:hover {
+  color: #315b96;
 }
 
 .iconbtn {

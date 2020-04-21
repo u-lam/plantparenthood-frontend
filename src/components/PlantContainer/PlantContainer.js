@@ -23,20 +23,15 @@ const styles = theme => ({
   container: {
     height: '100%', 
     width: '100%',
-    display: 'flex', 
-    flexDirection: 'row', 
-    overflow: 'hidden',
-    flexWrap: 'wrap', 
-    justifyContent: 'space-between'
   },
   container2: {
-    height: '90vh',
+    height: '100%',
     width: '100%',
     display: 'flex', 
     flexDirection: 'row', 
     flexWrap: 'wrap', 
     justifyContent: 'center'
-  }
+  }, 
 });
 
 
@@ -114,7 +109,7 @@ class PlantContainer extends React.Component {
        <div className='plantcontainer'>
         {/* MODAL TO ADD NEW PLANT, DATA PASSED TO PLANTNEW COMPONENT */}
         <Container className={classes.container}>
-          <div className={classes.addplant}>
+          <div className='addplant'>
             <IconButton className={classes.iconbtn} onClick={this.showModal}>
               <button className='addbtn'>Add Plant</button>
             </IconButton>

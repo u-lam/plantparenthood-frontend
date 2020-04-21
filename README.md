@@ -40,6 +40,12 @@ Link: Coming soon!
   * Once a trade request has been made, the other plant owner would get a message alert to either decline or accept the trade. 
   * Expand the categories to include flowers, vegetables, plant pottery or other planting equipment.
 
+### Technologies used
+ * MERN (Mongo DB, Express, JS, React, Node JS)
+ * Material UI
+ * HTML, CSS
+
+
 ### ERD Model 
 
  <img src="public/ERD.png">
@@ -55,5 +61,7 @@ Link: Coming soon!
  <img src="public/Signup.png">
 
  <img src="public/Myplants.png">
+
+ <img src="public/plants.png">
 
  <img src="public/User.png">
