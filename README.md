@@ -1,6 +1,13 @@
 # Plant Parenthood :cactus:
 Check it out <a href="https://plantslove.herokuapp.com/">here!</a> 
 
+To sign up, please ensure you include "@" and "." in your email, and use "Hello!@34" as your password. 
+
+Or you can use this test account to log in: 
+* Email: test@123.com
+* Password: Hello!@34 
+
+
 ### Intro
   Houseplants are awesome!! They are decorative, require little attention, and can even help purify the air around you. But what happens when you have to make a sudden move and can’t bring all your plants with you? Or when you downsize? Or if you just want to switch it up with different types of plants? 
 
